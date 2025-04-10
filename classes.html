@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes - Insight Mission</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 80px;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            padding: 2rem;
+            background: var(--light-bg);
+        }
+
+        .filter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Classes Grid */
+        .classes-section {
+            padding: 3rem 2rem;
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .class-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .class-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .class-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .class-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .class-card-content {
+            padding: 1.5rem;
+        }
+
+        .class-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .class-card .date {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .class-card .description {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .register-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        .register-btn:hover {
+            background: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">Insight Mission</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="classes.html">Classes</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Classes</button>
+                <button class="filter-btn" data-filter="career">Career Guidance</button>
+                <button class="filter-btn" data-filter="life">Life Skills</button>
+                <button class="filter-btn" data-filter="mentoring">Mentoring</button>
+            </div>
+        </section>
+
+        <!-- Classes Grid -->
+        <section class="classes-section">
+            <div class="classes-grid">
+                <!-- Career Guidance Classes -->
+                <div class="class-card" data-category="career">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3" alt="Career Workshop">
+                    <div class="class-card-content">
+                        <h3>Career Path Discovery</h3>
+                        <p class="date">March 15, 2024</p>
+                        <p class="description">Discover your true career path through expert guidance and self-assessment tools.</p>
+                        <button class="register-btn">Register Now</button>
+                    </div>
+                </div>
+
+                <div class="class-card" data-category="career">
+                    <img src="https://images.unsplash.com/photo-1560264280-88b68371db39?ixlib=rb-4.0.3" alt="Interview Skills">
+                    <div class="class-card-content">
+                        <h3>Interview Mastery</h3>
+                        <p class="date">March 22, 2024</p>
+                        <p class="description">Master the art of interviews with practical tips and mock sessions.</p>
+                        <button class="register-btn">Register Now</button>
+                    </div>
+                </div>
+
+                <!-- Life Skills Classes -->
+                <div class="class-card" data-category="life">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3" alt="Communication Skills">
+                    <div class="class-card-content">
+                        <h3>Effective Communication</h3>
+                        <p class="date">March 29, 2024</p>
+                        <p class="description">Enhance your communication skills for personal and professional success.</p>
+                        <button class="register-btn">Register Now</button>
+                    </div>
+                </div>
+
+                <div class="class-card" data-category="life">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3" alt="Leadership">
+                    <div class="class-card-content">
+                        <h3>Leadership Development</h3>
+                        <p class="date">April 5, 2024</p>
+                        <p class="description">Develop essential leadership skills for career advancement.</p>
+                        <button class="register-btn">Register Now</button>
+                    </div>
+                </div>
+
+                <!-- Mentoring Classes -->
+                <div class="class-card" data-category="mentoring">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3" alt="Mentorship">
+                    <div class="class-card-content">
+                        <h3>One-on-One Mentoring</h3>
+                        <p class="date">April 12, 2024</p>
+                        <p class="description">Personalized mentoring sessions with industry experts.</p>
+                        <button class="register-btn">Register Now</button>
+                    </div>
+                </div>
+
+                <div class="class-card" data-category="mentoring">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3" alt="Group Mentoring">
+                    <div class="class-card-content">
+                        <h3>Group Mentoring Program</h3>
+                        <p class="date">April 19, 2024</p>
+                        <p class="description">Join our group mentoring program for collaborative learning.</p>
+                        <button class="register-btn">Register Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>&copy; 2024 Insight Mission. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Navbar Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Filter Functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const classCards = document.querySelectorAll('.class-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                classCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, 100);
+                    } else {
+                        card.classList.remove('visible');
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Initial animation
+        classCards.forEach(card => {
+            setTimeout(() => {
+                card.classList.add('visible');
+            }, 100);
+        });
+
+        // Register button click handler
+        const registerBtns = document.querySelectorAll('.register-btn');
+        registerBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('Registration form will open in a new window.');
+            });
+        });
+    </script>
+</body>
+</html> 
