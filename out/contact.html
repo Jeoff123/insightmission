@@ -142,15 +142,27 @@
 
         .contact-info, .contact-form {
             padding: 2.5rem;
-            background: var(--card-bg);
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
-            border: 1px solid rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-info {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-lg);
         }
 
         .contact-info:hover, .contact-form:hover {
             transform: translateY(-5px);
+        }
+
+        .contact-form:hover {
             box-shadow: var(--shadow-lg), 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
@@ -178,11 +190,14 @@
             margin-bottom: 1.5rem;
             padding: 1rem;
             border-radius: var(--border-radius);
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .info-item:hover {
-            background: var(--light-bg);
+            background: var(--primary-color);
+            border-color: var(--primary-color);
         }
 
         .info-item i {
@@ -194,20 +209,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--light-bg);
+            background: white;
             border-radius: 50%;
             transition: all 0.3s ease;
         }
 
         .info-item:hover i {
-            background: var(--gradient-primary);
-            color: white;
+            background: white;
+            color: var(--primary-color);
             transform: scale(1.1);
         }
 
         .info-item p {
             color: var(--text-color);
             line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .info-item:hover p {
+            color: white;
         }
 
         /* Contact Form */
@@ -243,6 +263,7 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             background: var(--light-bg);
+            color: var(--text-color);
         }
 
         .form-group input:focus,
@@ -410,9 +431,16 @@
         }
 
         .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            padding: 2.5rem;
+            background: transparent;
+            border-radius: var(--border-radius);
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-info:hover {
+            transform: translateY(-5px);
+            box-shadow: none;
         }
 
         .contact-item {
@@ -617,6 +645,85 @@
                 justify-content: center;
             }
         }
+
+        /* Footer Contact Info Styles */
+        footer .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        footer .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        footer .contact-item i {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-top: 0.3rem;
+        }
+
+        footer .contact-item span {
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        footer .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        footer .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        footer .footer-section p {
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Footer Links */
+        footer .footer-links a {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: block;
+            padding: 0.5rem 0;
+        }
+
+        footer .footer-links a:hover {
+            color: white;
+            transform: translateX(10px);
+        }
+
+        /* Footer Bottom */
+        footer .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        footer .footer-bottom p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -643,11 +750,11 @@
                     <h2>Get in Touch</h2>
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <p>123 Education Street, City, State 12345</p>
+                        <p>INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</p>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-phone"></i>
-                        <p>+1 (123) 456-7890</p>
+                        <p>+91 1234567890</p>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-envelope"></i>
@@ -716,11 +823,11 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>123 Education Street, City, State 12345</span>
+                        <span>INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>+1 (123) 456-7890</span>
+                        <span>+91 1234567890</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
