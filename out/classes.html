@@ -934,7 +934,7 @@
         const registerBtns = document.querySelectorAll('.register-btn');
         registerBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                alert('Registration form will open in a new window.');
+                window.location.href = 'register.html';
             });
         });
     </script>
