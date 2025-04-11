@@ -530,123 +530,274 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
             animation: modalSlideIn 0.3s ease;
         }
+
+        /* Login Page Styles */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--section-bg);
+            padding: 2rem;
+        }
+
+        .login-box {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-logo {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .login-title {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .login-input {
+            padding: 1rem;
+            border: 2px solid var(--light-bg);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .admin-content {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="logo">
-            <i class="fas fa-graduation-cap"></i>
-            Insight Mission
-        </a>
-    </nav>
-
-    <div class="admin-container">
-        <!-- Category Management Section -->
-        <div class="category-section">
-            <div class="category-header">
-                <h2 class="category-title">Manage Categories</h2>
-                <button class="add-category-btn" onclick="openCategoryModal()">
-                    <i class="fas fa-plus"></i> Add Category
-                </button>
+    <!-- Login Section -->
+    <div class="login-container" id="loginSection">
+        <div class="login-box">
+            <div class="login-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Insight Mission</span>
             </div>
-            <div class="categories-list" id="categoriesList">
-                <!-- Categories will be dynamically added here -->
-            </div>
-        </div>
-
-        <div class="admin-header">
-            <h1 class="admin-title">Manage Classes</h1>
-            <button class="add-class-btn" onclick="openModal()">
-                <i class="fas fa-plus"></i> Add New Class
-            </button>
-        </div>
-
-        <div class="filter-section">
-            <div class="filter-container">
-                <button class="filter-btn active" onclick="filterClasses('all')">
-                    <i class="fas fa-th-large"></i> All
-                </button>
-                <button class="filter-btn" onclick="filterClasses('career')">
-                    <i class="fas fa-briefcase"></i> Career Guidance
-                </button>
-                <button class="filter-btn" onclick="filterClasses('life')">
-                    <i class="fas fa-heart"></i> Life Skills
-                </button>
-                <button class="filter-btn" onclick="filterClasses('mentoring')">
-                    <i class="fas fa-user-graduate"></i> Mentoring
-                </button>
-            </div>
-        </div>
-
-        <table class="classes-table">
-            <thead>
-                <tr>
-                    <th>Class Name</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Fee</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="classesTableBody">
-                <!-- Classes will be dynamically added here -->
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Add/Edit Class Modal -->
-    <div id="classModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle">Add New Class</h2>
-            <form id="classForm">
-                <input type="hidden" id="classId">
-                <div class="form-group">
-                    <label for="className">Class Name</label>
-                    <input type="text" id="className" required>
-                </div>
-                <div class="form-group">
-                    <label for="classCategory">Category</label>
-                    <select id="classCategory" required>
-                        <option value="career">Career Guidance</option>
-                        <option value="life">Life Skills</option>
-                        <option value="mentoring">Mentoring</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="classDescription">Description</label>
-                    <textarea id="classDescription" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="classFee">Fee</label>
-                    <input type="number" id="classFee" required>
-                </div>
-                <button type="submit" class="submit-btn">Save Class</button>
+            <h1 class="login-title">Admin Login</h1>
+            <form id="loginForm" class="login-form">
+                <input type="text" id="username" class="login-input" placeholder="Username" required>
+                <input type="password" id="password" class="login-input" placeholder="Password" required>
+                <div class="error-message" id="errorMessage">Invalid credentials</div>
+                <button type="submit" class="login-btn">Login</button>
             </form>
         </div>
     </div>
 
-    <!-- Category Modal -->
-    <div id="categoryModal" class="category-modal">
-        <div class="category-modal-content">
-            <span class="close-modal" onclick="closeCategoryModal()">&times;</span>
-            <h2 id="categoryModalTitle">Add New Category</h2>
-            <form id="categoryForm">
-                <input type="hidden" id="categoryId">
-                <div class="form-group">
-                    <label for="categoryName">Category Name</label>
-                    <input type="text" id="categoryName" required>
+    <!-- Admin Content (hidden by default) -->
+    <div class="admin-content" id="adminContent">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                Insight Mission
+            </a>
+        </nav>
+
+        <div class="admin-container">
+            <!-- Category Management Section -->
+            <div class="category-section">
+                <div class="category-header">
+                    <h2 class="category-title">Manage Categories</h2>
+                    <button class="add-category-btn" onclick="openCategoryModal()">
+                        <i class="fas fa-plus"></i> Add Category
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label for="categoryIcon">Icon Class (Font Awesome)</label>
-                    <input type="text" id="categoryIcon" placeholder="e.g., fa-briefcase" required>
+                <div class="categories-list" id="categoriesList">
+                    <!-- Categories will be dynamically added here -->
                 </div>
-                <button type="submit" class="submit-btn">Save Category</button>
-            </form>
+            </div>
+
+            <div class="admin-header">
+                <h1 class="admin-title">Manage Classes</h1>
+                <button class="add-class-btn" onclick="openModal()">
+                    <i class="fas fa-plus"></i> Add New Class
+                </button>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-container">
+                    <button class="filter-btn active" onclick="filterClasses('all')">
+                        <i class="fas fa-th-large"></i> All
+                    </button>
+                    <button class="filter-btn" onclick="filterClasses('career')">
+                        <i class="fas fa-briefcase"></i> Career Guidance
+                    </button>
+                    <button class="filter-btn" onclick="filterClasses('life')">
+                        <i class="fas fa-heart"></i> Life Skills
+                    </button>
+                    <button class="filter-btn" onclick="filterClasses('mentoring')">
+                        <i class="fas fa-user-graduate"></i> Mentoring
+                    </button>
+                </div>
+            </div>
+
+            <table class="classes-table">
+                <thead>
+                    <tr>
+                        <th>Class Name</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Fee</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="classesTableBody">
+                    <!-- Classes will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Add/Edit Class Modal -->
+        <div id="classModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+                <h2 id="modalTitle">Add New Class</h2>
+                <form id="classForm">
+                    <input type="hidden" id="classId">
+                    <div class="form-group">
+                        <label for="className">Class Name</label>
+                        <input type="text" id="className" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="classCategory">Category</label>
+                        <select id="classCategory" required>
+                            <option value="career">Career Guidance</option>
+                            <option value="life">Life Skills</option>
+                            <option value="mentoring">Mentoring</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="classDescription">Description</label>
+                        <textarea id="classDescription" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="classFee">Fee</label>
+                        <input type="number" id="classFee" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Save Class</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Category Modal -->
+        <div id="categoryModal" class="category-modal">
+            <div class="category-modal-content">
+                <span class="close-modal" onclick="closeCategoryModal()">&times;</span>
+                <h2 id="categoryModalTitle">Add New Category</h2>
+                <form id="categoryForm">
+                    <input type="hidden" id="categoryId">
+                    <div class="form-group">
+                        <label for="categoryName">Category Name</label>
+                        <input type="text" id="categoryName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryIcon">Icon Class (Font Awesome)</label>
+                        <input type="text" id="categoryIcon" placeholder="e.g., fa-briefcase" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Save Category</button>
+                </form>
+            </div>
         </div>
     </div>
 
     <script>
+        // Authentication
+        const validCredentials = {
+            username: "admin",
+            password: "admin123" // In a real application, use proper authentication
+        };
+
+        // Check if user is already logged in
+        function checkAuth() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn === 'true') {
+                showAdminContent();
+            }
+        }
+
+        // Show admin content
+        function showAdminContent() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('adminContent').classList.add('show');
+        }
+
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (username === validCredentials.username && password === validCredentials.password) {
+                localStorage.setItem('isLoggedIn', 'true');
+                showAdminContent();
+            } else {
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+
+        // Check authentication on page load
+        checkAuth();
+
         // Categories data
         let categories = [
             { id: 1, name: "Career Guidance", icon: "fa-briefcase" },
