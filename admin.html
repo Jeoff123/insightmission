@@ -76,6 +76,37 @@
             color: var(--accent-color);
         }
 
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logout-btn {
+            padding: 0.8rem 1.5rem;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+            background: #dc2626;
+        }
+
+        .logout-btn i {
+            font-size: 1.1rem;
+        }
+
         /* Admin Panel Styles */
         .admin-container {
             max-width: 1200px;
@@ -675,6 +706,12 @@
                 <i class="fas fa-graduation-cap"></i>
                 Insight Mission
             </a>
+            <div class="navbar-right">
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
         </nav>
 
         <div class="admin-container">
@@ -1082,6 +1119,14 @@
         renderCategories();
         updateCategorySelect();
         renderClasses();
+
+        // Logout function
+        function logout() {
+            document.getElementById('adminContent').classList.remove('show');
+            document.getElementById('loginSection').style.display = 'flex';
+            // Clear any form values
+            document.getElementById('loginForm').reset();
+        }
     </script>
 </body>
 </html> 
