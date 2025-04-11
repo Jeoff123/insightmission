@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Insight Mission</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #f59e0b;
+            --text-color: #1f2937;
+            --light-bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --gradient-start: #2563eb;
+            --gradient-end: #3b82f6;
+            --success-color: #10b981;
+            --trust-color: #6366f1;
+            --section-bg: #f8fafc;
+            --transition-speed: 0.3s;
+            --hover-scale: 1.02;
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+            --spacing-unit: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--section-bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+        }
+
+        .logo {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.8rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        /* Admin Panel Styles */
+        .admin-container {
+            max-width: 1200px;
+            margin: 100px auto 50px;
+            padding: 2.5rem;
+            flex: 1;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
+
+        .admin-title {
+            font-size: 2.2rem;
+            color: var(--text-color);
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .admin-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 2px;
+        }
+
+        .add-class-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+        }
+
+        .add-class-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .add-class-btn i {
+            font-size: 1.2rem;
+        }
+
+        .classes-table {
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .classes-table th,
+        .classes-table td {
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-bg);
+        }
+
+        .classes-table th {
+            background: var(--light-bg);
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .classes-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .classes-table tr:hover td {
+            background: rgba(37, 99, 235, 0.02);
+        }
+
+        .action-btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 0.8rem;
+            transition: all var(--transition-speed) ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .edit-btn {
+            background: var(--accent-color);
+            color: white;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+        }
+
+        .delete-btn {
+            background: #ef4444;
+            color: white;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+        }
+
+        .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .action-btn:hover::before {
+            transform: translateX(0);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .action-btn i {
+            font-size: 1rem;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .action-btn:hover i {
+            transform: scale(1.1);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: relative;
+            background: var(--card-bg);
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: all var(--transition-speed) ease;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-modal:hover {
+            background: var(--light-bg);
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: var(--text-color);
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--light-bg);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all var(--transition-speed) ease;
+            width: 100%;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Filter Section Styles */
+        .filter-section {
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--light-bg);
+            color: var(--text-color);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+        }
+
+        .filter-btn:hover:not(.active) {
+            background: var(--card-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-btn i {
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 1.5rem;
+            }
+
+            .admin-header {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .admin-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .classes-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+        }
+
+        /* Category Management Styles */
+        .category-section {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .add-category-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--success-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .add-category-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+        }
+
+        .categories-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .category-card {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-name {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .category-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .category-btn {
+            padding: 0.4rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .edit-category-btn {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .delete-category-btn {
+            background: #ef4444;
+            color: white;
+        }
+
+        .category-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Category Modal Styles */
+        .category-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .category-modal-content {
+            position: relative;
+            background: var(--card-bg);
+            width: 90%;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            animation: modalSlideIn 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            Insight Mission
+        </a>
+    </nav>
+
+    <div class="admin-container">
+        <!-- Category Management Section -->
+        <div class="category-section">
+            <div class="category-header">
+                <h2 class="category-title">Manage Categories</h2>
+                <button class="add-category-btn" onclick="openCategoryModal()">
+                    <i class="fas fa-plus"></i> Add Category
+                </button>
+            </div>
+            <div class="categories-list" id="categoriesList">
+                <!-- Categories will be dynamically added here -->
+            </div>
+        </div>
+
+        <div class="admin-header">
+            <h1 class="admin-title">Manage Classes</h1>
+            <button class="add-class-btn" onclick="openModal()">
+                <i class="fas fa-plus"></i> Add New Class
+            </button>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterClasses('all')">
+                    <i class="fas fa-th-large"></i> All
+                </button>
+                <button class="filter-btn" onclick="filterClasses('career')">
+                    <i class="fas fa-briefcase"></i> Career Guidance
+                </button>
+                <button class="filter-btn" onclick="filterClasses('life')">
+                    <i class="fas fa-heart"></i> Life Skills
+                </button>
+                <button class="filter-btn" onclick="filterClasses('mentoring')">
+                    <i class="fas fa-user-graduate"></i> Mentoring
+                </button>
+            </div>
+        </div>
+
+        <table class="classes-table">
+            <thead>
+                <tr>
+                    <th>Class Name</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Fee</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="classesTableBody">
+                <!-- Classes will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add/Edit Class Modal -->
+    <div id="classModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Add New Class</h2>
+            <form id="classForm">
+                <input type="hidden" id="classId">
+                <div class="form-group">
+                    <label for="className">Class Name</label>
+                    <input type="text" id="className" required>
+                </div>
+                <div class="form-group">
+                    <label for="classCategory">Category</label>
+                    <select id="classCategory" required>
+                        <option value="career">Career Guidance</option>
+                        <option value="life">Life Skills</option>
+                        <option value="mentoring">Mentoring</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="classDescription">Description</label>
+                    <textarea id="classDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="classFee">Fee</label>
+                    <input type="number" id="classFee" required>
+                </div>
+                <button type="submit" class="submit-btn">Save Class</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Category Modal -->
+    <div id="categoryModal" class="category-modal">
+        <div class="category-modal-content">
+            <span class="close-modal" onclick="closeCategoryModal()">&times;</span>
+            <h2 id="categoryModalTitle">Add New Category</h2>
+            <form id="categoryForm">
+                <input type="hidden" id="categoryId">
+                <div class="form-group">
+                    <label for="categoryName">Category Name</label>
+                    <input type="text" id="categoryName" required>
+                </div>
+                <div class="form-group">
+                    <label for="categoryIcon">Icon Class (Font Awesome)</label>
+                    <input type="text" id="categoryIcon" placeholder="e.g., fa-briefcase" required>
+                </div>
+                <button type="submit" class="submit-btn">Save Category</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Categories data
+        let categories = [
+            { id: 1, name: "Career Guidance", icon: "fa-briefcase" },
+            { id: 2, name: "Life Skills", icon: "fa-heart" },
+            { id: 3, name: "Mentoring", icon: "fa-user-graduate" }
+        ];
+
+        // Update classes data to use category IDs
+        let classes = [
+            {
+                id: 1,
+                name: "Career Planning Workshop",
+                categoryId: 1,
+                description: "Learn how to plan and navigate your career path effectively.",
+                fee: 5000
+            },
+            {
+                id: 2,
+                name: "Time Management Mastery",
+                categoryId: 2,
+                description: "Essential skills for managing your time and increasing productivity.",
+                fee: 4000
+            },
+            {
+                id: 3,
+                name: "Professional Mentoring",
+                categoryId: 3,
+                description: "One-on-one mentoring sessions with industry experts.",
+                fee: 8000
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        // Filter classes
+        function filterClasses(category) {
+            currentFilter = category;
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes(category)) {
+                    btn.classList.add('active');
+                }
+            });
+            renderClasses();
+        }
+
+        // Initialize the table
+        function renderClasses() {
+            const tbody = document.getElementById('classesTableBody');
+            tbody.innerHTML = '';
+            
+            const filteredClasses = currentFilter === 'all' 
+                ? classes 
+                : classes.filter(c => {
+                    const category = categories.find(cat => cat.id === c.categoryId);
+                    return category && category.name.toLowerCase().includes(currentFilter);
+                });
+            
+            filteredClasses.forEach(classItem => {
+                const category = categories.find(c => c.id === classItem.categoryId);
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${classItem.name}</td>
+                    <td>${category ? category.name : 'Unknown'}</td>
+                    <td>${classItem.description}</td>
+                    <td>₹${classItem.fee.toLocaleString('en-IN')}</td>
+                    <td>
+                        <button class="action-btn edit-btn" onclick="editClass(${classItem.id})">
+                            <i class="fas fa-pen-to-square"></i> Edit
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteClass(${classItem.id})">
+                            <i class="fas fa-trash-can"></i> Delete
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Modal functions
+        function openModal(classId = null) {
+            const modal = document.getElementById('classModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const form = document.getElementById('classForm');
+            
+            if (classId) {
+                modalTitle.textContent = 'Edit Class';
+                const classItem = classes.find(c => c.id === classId);
+                document.getElementById('classId').value = classId;
+                document.getElementById('className').value = classItem.name;
+                document.getElementById('classCategory').value = classItem.categoryId;
+                document.getElementById('classDescription').value = classItem.description;
+                document.getElementById('classFee').value = classItem.fee;
+            } else {
+                modalTitle.textContent = 'Add New Class';
+                form.reset();
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('classModal').style.display = 'none';
+        }
+
+        // Form submission
+        document.getElementById('classForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const classId = document.getElementById('classId').value;
+            const name = document.getElementById('className').value;
+            const categoryId = parseInt(document.getElementById('classCategory').value);
+            const description = document.getElementById('classDescription').value;
+            const fee = parseFloat(document.getElementById('classFee').value);
+            
+            if (classId) {
+                // Edit existing class
+                const index = classes.findIndex(c => c.id === parseInt(classId));
+                classes[index] = { id: parseInt(classId), name, categoryId, description, fee };
+            } else {
+                // Add new class
+                const newId = classes.length > 0 ? Math.max(...classes.map(c => c.id)) + 1 : 1;
+                classes.push({ id: newId, name, categoryId, description, fee });
+            }
+            
+            renderClasses();
+            closeModal();
+        });
+
+        // Edit class
+        function editClass(id) {
+            openModal(id);
+        }
+
+        // Delete class
+        function deleteClass(id) {
+            if (confirm('Are you sure you want to delete this class?')) {
+                classes = classes.filter(c => c.id !== id);
+                renderClasses();
+            }
+        }
+
+        // Category Management Functions
+        function renderCategories() {
+            const categoriesList = document.getElementById('categoriesList');
+            categoriesList.innerHTML = '';
+            
+            categories.forEach(category => {
+                const categoryCard = document.createElement('div');
+                categoryCard.className = 'category-card';
+                categoryCard.innerHTML = `
+                    <span class="category-name">
+                        <i class="fas ${category.icon}"></i> ${category.name}
+                    </span>
+                    <div class="category-actions">
+                        <button class="category-btn edit-category-btn" onclick="editCategory(${category.id})">
+                            <i class="fas fa-pen-to-square"></i>
+                        </button>
+                        <button class="category-btn delete-category-btn" onclick="deleteCategory(${category.id})">
+                            <i class="fas fa-trash-can"></i>
+                        </button>
+                    </div>
+                `;
+                categoriesList.appendChild(categoryCard);
+            });
+        }
+
+        function openCategoryModal(categoryId = null) {
+            const modal = document.getElementById('categoryModal');
+            const modalTitle = document.getElementById('categoryModalTitle');
+            const form = document.getElementById('categoryForm');
+            
+            if (categoryId) {
+                modalTitle.textContent = 'Edit Category';
+                const category = categories.find(c => c.id === categoryId);
+                document.getElementById('categoryId').value = categoryId;
+                document.getElementById('categoryName').value = category.name;
+                document.getElementById('categoryIcon').value = category.icon;
+            } else {
+                modalTitle.textContent = 'Add New Category';
+                form.reset();
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closeCategoryModal() {
+            document.getElementById('categoryModal').style.display = 'none';
+        }
+
+        function editCategory(id) {
+            openCategoryModal(id);
+        }
+
+        function deleteCategory(id) {
+            if (confirm('Are you sure you want to delete this category? This will also remove all classes in this category.')) {
+                categories = categories.filter(c => c.id !== id);
+                classes = classes.filter(c => c.categoryId !== id);
+                renderCategories();
+                renderClasses();
+                updateCategorySelect();
+            }
+        }
+
+        // Update the category select in the class form
+        function updateCategorySelect() {
+            const select = document.getElementById('classCategory');
+            select.innerHTML = '';
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category.id;
+                option.textContent = category.name;
+                select.appendChild(option);
+            });
+        }
+
+        // Category form submission
+        document.getElementById('categoryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const categoryId = document.getElementById('categoryId').value;
+            const name = document.getElementById('categoryName').value;
+            const icon = document.getElementById('categoryIcon').value;
+            
+            if (categoryId) {
+                // Edit existing category
+                const index = categories.findIndex(c => c.id === parseInt(categoryId));
+                categories[index] = { id: parseInt(categoryId), name, icon };
+            } else {
+                // Add new category
+                const newId = categories.length > 0 ? Math.max(...categories.map(c => c.id)) + 1 : 1;
+                categories.push({ id: newId, name, icon });
+            }
+            
+            renderCategories();
+            updateCategorySelect();
+            closeCategoryModal();
+        });
+
+        // Initialize the page
+        renderCategories();
+        updateCategorySelect();
+        renderClasses();
+    </script>
+</body>
+</html> 
