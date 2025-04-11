@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classes - Insight Mission</title>
+    <title>Contact - Insight Mission</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -13,15 +14,16 @@
             --accent-color: #f59e0b;
             --text-color: #1f2937;
             --light-bg: #f3f4f6;
+            --gradient-primary: linear-gradient(135deg, #2563eb, #3b82f6);
+            --gradient-accent: linear-gradient(135deg, #f59e0b, #f97316);
+            --gradient-success: linear-gradient(135deg, #10b981, #34d399);
+            --gradient-trust: linear-gradient(135deg, #3b82f6, #60a5fa);
+            --section-bg: #f3f4f6;
             --card-bg: #ffffff;
-            --gradient-start: #2563eb;
-            --gradient-end: #3b82f6;
-            --success-color: #10b981;
-            --trust-color: #6366f1;
-            --section-bg: #f8fafc;
-            --transition-speed: 0.3s;
-            --hover-scale: 1.02;
-            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --border-radius: 10px;
         }
 
         * {
@@ -29,10 +31,6 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background: var(--section-bg);
         }
 
         /* Navbar Styles */
@@ -47,50 +45,43 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-sm);
             z-index: 1000;
             transition: all 0.3s ease;
         }
 
-        .navbar.scrolled {
-            padding: 0.8rem 2rem;
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
         .logo {
-            color: var(--primary-color);
+            font-size: 1.5rem;
             font-weight: 700;
-            font-size: 1.8rem;
+            color: var(--primary-color);
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
             position: relative;
         }
 
-        .logo::before {
+        .logo::after {
             content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            display: inline-block;
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
-            align-items: center;
         }
 
         .nav-links a {
-            color: var(--text-color);
             text-decoration: none;
+            color: var(--text-color);
             font-weight: 500;
-            font-size: 1.1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
             transition: all 0.3s ease;
             position: relative;
         }
@@ -98,33 +89,26 @@
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: -2px;
+            left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary-color);
-            transition: width var(--transition-speed) ease;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--secondary-color);
+            color: var(--primary-color);
         }
 
         .nav-links a:hover::after {
-            width: 80%;
+            width: 100%;
         }
 
         .hamburger {
             display: none;
             font-size: 1.5rem;
-            color: var(--text-color);
             cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .hamburger:hover {
-            color: var(--secondary-color);
         }
 
         /* Main Content */
@@ -132,437 +116,227 @@
             padding-top: 80px;
         }
 
-        /* Filter Section */
-        .filter-section {
-            padding: 3rem 2rem;
-            background: var(--light-bg);
-        }
-
-        .filter-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .filter-btn {
-            padding: 0.8rem 2rem;
-            border: none;
-            background: var(--card-bg);
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all var(--transition-speed) ease;
-            font-weight: 500;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 2rem;
+            background: var(--section-bg);
             position: relative;
         }
 
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--secondary-color);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .filter-btn.active {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        /* Classes Grid */
-        .classes-section {
-            padding: 4rem 2rem;
-        }
-
-        .classes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .class-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            transition: transform var(--transition-speed) ease, 
-                        box-shadow var(--transition-speed) ease,
-                        border-color var(--transition-speed) ease;
-            position: relative;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .class-card::before {
+        .contact-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            height: 4px;
+            background: var(--gradient-primary);
         }
 
-        .class-card.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
         }
 
-        .class-card:hover {
-            transform: translateY(-5px) scale(var(--hover-scale));
-            box-shadow: var(--shadow-hover);
+        .contact-info, .contact-form {
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-info {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-info:hover, .contact-form:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-form:hover {
+            box-shadow: var(--shadow-lg), 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h2, .contact-form h2 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .contact-info h2::after, .contact-form h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 3px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .info-item:hover {
+            background: var(--primary-color);
             border-color: var(--primary-color);
         }
 
-        .class-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform var(--transition-speed) ease;
-        }
-
-        .class-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .class-card-content {
-            padding: 2rem;
-            transition: background-color var(--transition-speed) ease;
-        }
-
-        .class-card:hover .class-card-content {
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-
-        .class-card h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
+        .info-item i {
             font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .class-card .date {
-            color: var(--secondary-color);
-            font-size: 1rem;
-            margin-bottom: 1rem;
+            color: var(--primary-color);
+            margin-right: 1rem;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-        }
-
-        .class-card .description {
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            color: var(--text-color);
-            font-size: 1.1rem;
-        }
-
-        .register-btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--success-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
+            justify-content: center;
+            background: white;
+            border-radius: 50%;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 600;
+        }
+
+        .info-item:hover i {
+            background: white;
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .info-item p {
+            color: var(--text-color);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .info-item:hover p {
+            color: white;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--light-bg);
+            color: var(--text-color);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
             position: relative;
             overflow: hidden;
         }
 
-        .register-btn::after {
+        .submit-btn::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: scale(0);
-            transition: transform var(--transition-speed) ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
         }
 
-        .register-btn:hover::after {
-            transform: scale(1);
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 0 2rem 6rem;
+            background: var(--section-bg);
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 400px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* Footer */
-        .footer {
-            background: var(--primary-color);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .social-icons a {
-            color: white;
-            font-size: 1.5rem;
-            transition: all var(--transition-speed) ease;
-            position: relative;
-        }
-
-        .social-icons a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transform: scale(0);
-            transition: transform var(--transition-speed) ease;
-        }
-
-        .social-icons a:hover::before {
-            transform: scale(1.2);
-        }
-
-        /* Mobile-First Base Styles */
-        @media (max-width: 768px) {
-            :root {
-                --mobile-padding: 0.8rem;
-                --mobile-gap: 0.6rem;
-                --mobile-font-size: 0.8rem;
-                --mobile-heading-size: 1.1rem;
-                --mobile-section-padding: 1.5rem;
-            }
-
-            /* Navbar Mobile */
-            .navbar {
-                padding: 0.6rem var(--mobile-padding);
-            }
-
-            .logo {
-                font-size: 1.2rem;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                padding: 0.8rem;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-                z-index: 999;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links a {
-                width: 100%;
-                text-align: center;
-                padding: 0.8rem;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-                font-size: var(--mobile-font-size);
-            }
-
-            .nav-links a:last-child {
-                border-bottom: none;
-            }
-
-            .hamburger {
-                display: block;
-                font-size: 1.3rem;
-                color: var(--text-color);
-                cursor: pointer;
-                transition: color 0.3s ease;
-            }
-
-            .hamburger:hover {
-                color: var(--primary-color);
-            }
-
-            /* Main Content */
-            .main-content {
-                padding-top: 50px;
-            }
-
-            /* Filter Section Mobile */
-            .filter-section {
-                padding: 1.2rem var(--mobile-padding);
-            }
-
-            .filter-btn {
-                padding: 0.6rem;
-                font-size: var(--mobile-font-size);
-            }
-
-            /* Classes Grid Mobile */
-            .classes-section {
-                padding: 1.2rem var(--mobile-padding);
-            }
-
-            .class-card {
-                border-radius: 10px;
-            }
-
-            .class-card img {
-                height: 150px;
-            }
-
-            .class-card-content {
-                padding: 1rem;
-            }
-
-            .class-card h3 {
-                font-size: var(--mobile-heading-size);
-                margin-bottom: 0.3rem;
-            }
-
-            .class-card .date {
-                font-size: var(--mobile-font-size);
-                margin-bottom: 0.3rem;
-            }
-
-            .class-card .description {
-                font-size: var(--mobile-font-size);
-                margin-bottom: 0.6rem;
-                line-height: 1.3;
-            }
-
-            .register-btn {
-                padding: 0.6rem;
-                font-size: var(--mobile-font-size);
-            }
-
-            /* Mobile Typography */
-            h1 {
-                font-size: 1.5rem;
-                line-height: 1.2;
-            }
-
-            h2 {
-                font-size: 1.2rem;
-                line-height: 1.2;
-            }
-
-            h3 {
-                font-size: 1.1rem;
-                line-height: 1.2;
-            }
-
-            p {
-                font-size: var(--mobile-font-size);
-                line-height: 1.3;
-            }
-
-            /* Mobile Spacing */
-            .section {
-                margin: 1rem 0;
-            }
-
-            /* Touch Target Sizes */
-            button, a, input, textarea {
-                min-height: 36px;
-            }
-
-            .nav-links a {
-                min-height: 40px;
-            }
-
-            /* Footer Mobile */
-            .footer {
-                padding: 1.2rem var(--mobile-padding);
-            }
-
-            .social-icons {
-                gap: 0.6rem;
-                margin: 1.2rem 0;
-            }
-
-            .social-icons a {
-                font-size: 1rem;
-            }
-
-            .footer p {
-                font-size: var(--mobile-font-size);
-            }
-
-            .class-card:hover {
-                transform: translateY(-3px);
-            }
-            
-            .filter-btn:hover {
-                transform: translateY(-2px);
-            }
-            
-            .social-icons a:hover::before {
-                transform: scale(1.1);
-            }
-        }
-
-        /* Desktop Styles */
-        @media (min-width: 769px) {
-            .class-card {
-                border-radius: 12px;
-            }
-
-            .class-card img {
-                height: 180px;
-            }
-
-            .class-card-content {
-                padding: 1.2rem;
-            }
-
-            .class-card h3 {
-                font-size: 1.2rem;
-                margin-bottom: 0.4rem;
-            }
-
-            .class-card .date {
-                font-size: 0.9rem;
-                margin-bottom: 0.4rem;
-            }
-
-            .class-card .description {
-                font-size: 0.9rem;
-                margin-bottom: 0.8rem;
-                line-height: 1.4;
-            }
-
-            .register-btn {
-                padding: 0.8rem;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Add the footer styles */
         footer {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
@@ -658,9 +432,16 @@
         }
 
         .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            padding: 2.5rem;
+            background: transparent;
+            border-radius: var(--border-radius);
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-info:hover {
+            transform: translateY(-5px);
+            box-shadow: none;
         }
 
         .contact-item {
@@ -722,8 +503,132 @@
             font-size: 0.9rem;
         }
 
-        /* Mobile Footer */
+        /* Responsive Design */
         @media (max-width: 768px) {
+            :root {
+                --mobile-padding: 1rem;
+                --mobile-gap: 1rem;
+                --mobile-font-size: 0.9rem;
+                --mobile-heading-size: 1.5rem;
+                --mobile-section-padding: 2rem;
+            }
+
+            /* Navbar Mobile */
+            .navbar {
+                padding: 1rem var(--mobile-padding);
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+                padding: 1rem;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                font-size: var(--mobile-font-size);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            .hamburger {
+                display: block;
+                font-size: 1.5rem;
+                color: var(--text-color);
+                cursor: pointer;
+                transition: color 0.3s ease;
+            }
+
+            .hamburger:hover {
+                color: var(--primary-color);
+            }
+
+            /* Main Content Mobile */
+            .main-content {
+                padding-top: 60px;
+            }
+
+            /* Contact Section Mobile */
+            .contact-section {
+                padding: var(--mobile-section-padding) var(--mobile-padding);
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: var(--mobile-gap);
+            }
+
+            .contact-info, .contact-form {
+                padding: 1.5rem;
+            }
+
+            .contact-info h2, .contact-form h2 {
+                font-size: var(--mobile-heading-size);
+                margin-bottom: 1.5rem;
+            }
+
+            .info-item {
+                padding: 0.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .info-item i {
+                font-size: 1.2rem;
+                width: 35px;
+                height: 35px;
+            }
+
+            .info-item p {
+                font-size: var(--mobile-font-size);
+            }
+
+            /* Form Mobile */
+            .form-group label {
+                font-size: var(--mobile-font-size);
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.8rem;
+                font-size: var(--mobile-font-size);
+            }
+
+            .submit-btn {
+                padding: 0.8rem;
+                font-size: var(--mobile-font-size);
+            }
+
+            /* Map Section Mobile */
+            .map-section {
+                padding: 0 var(--mobile-padding) var(--mobile-section-padding);
+            }
+
+            .map-container {
+                height: 250px;
+            }
+
+            /* Footer Mobile */
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -740,6 +645,85 @@
             .social-icons {
                 justify-content: center;
             }
+        }
+
+        /* Footer Contact Info Styles */
+        footer .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        footer .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        footer .contact-item i {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-top: 0.3rem;
+        }
+
+        footer .contact-item span {
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        footer .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        footer .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        footer .footer-section p {
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Footer Links */
+        footer .footer-links a {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: block;
+            padding: 0.5rem 0;
+        }
+
+        footer .footer-links a:hover {
+            color: white;
+            transform: translateX(10px);
+        }
+
+        /* Footer Bottom */
+        footer .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        footer .footer-bottom p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -760,81 +744,54 @@
     </nav>
 
     <div class="main-content">
-        <!-- Filter Section -->
-        <section class="filter-section">
-            <div class="filter-container">
-                <button class="filter-btn active" data-filter="all">All Classes</button>
-                <button class="filter-btn" data-filter="career">Career Guidance</button>
-                <button class="filter-btn" data-filter="life">Life Skills</button>
-                <button class="filter-btn" data-filter="mentoring">Mentoring</button>
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+91 1234567890</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>info@insightmission.org</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2>Send us a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
             </div>
         </section>
 
-        <!-- Classes Grid -->
-        <section class="classes-section">
-            <div class="classes-grid">
-                <!-- Career Guidance Classes -->
-                <div class="class-card" data-category="career">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3" alt="Career Workshop">
-                    <div class="class-card-content">
-                        <h3>Career Path Discovery</h3>
-                        <p class="date">March 15, 2024</p>
-                        <p class="description">Discover your true career path through expert guidance and self-assessment tools.</p>
-                        <button class="register-btn">Register Now</button>
-                    </div>
-                </div>
-
-                <div class="class-card" data-category="career">
-                    <img src="https://images.unsplash.com/photo-1560264280-88b68371db39?ixlib=rb-4.0.3" alt="Interview Skills">
-                    <div class="class-card-content">
-                        <h3>Interview Mastery</h3>
-                        <p class="date">March 22, 2024</p>
-                        <p class="description">Master the art of interviews with practical tips and mock sessions.</p>
-                        <button class="register-btn">Register Now</button>
-                    </div>
-                </div>
-
-                <!-- Life Skills Classes -->
-                <div class="class-card" data-category="life">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3" alt="Communication Skills">
-                    <div class="class-card-content">
-                        <h3>Effective Communication</h3>
-                        <p class="date">March 29, 2024</p>
-                        <p class="description">Enhance your communication skills for personal and professional success.</p>
-                        <button class="register-btn">Register Now</button>
-                    </div>
-                </div>
-
-                <div class="class-card" data-category="life">
-                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3" alt="Leadership">
-                    <div class="class-card-content">
-                        <h3>Leadership Development</h3>
-                        <p class="date">April 5, 2024</p>
-                        <p class="description">Develop essential leadership skills for career advancement.</p>
-                        <button class="register-btn">Register Now</button>
-                    </div>
-                </div>
-
-                <!-- Mentoring Classes -->
-                <div class="class-card" data-category="mentoring">
-                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3" alt="Mentorship">
-                    <div class="class-card-content">
-                        <h3>One-on-One Mentoring</h3>
-                        <p class="date">April 12, 2024</p>
-                        <p class="description">Personalized mentoring sessions with industry experts.</p>
-                        <button class="register-btn">Register Now</button>
-                    </div>
-                </div>
-
-                <div class="class-card" data-category="mentoring">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3" alt="Group Mentoring">
-                    <div class="class-card-content">
-                        <h3>Group Mentoring Program</h3>
-                        <p class="date">April 19, 2024</p>
-                        <p class="description">Join our group mentoring program for collaborative learning.</p>
-                        <button class="register-btn">Register Now</button>
-                    </div>
-                </div>
+        <!-- Map Section -->
+        <section class="map-section">
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3743.1899825049436!2d76.53819617502141!3d9.240634190829446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b061fa818d41f23%3A0x989231d29ae73c4e!2sINSIGHT%20MISSION%20-%20Personal%20Guidance%20%26%20Life%20Enrichment%20Centre!5e1!3m2!1sen!2sin!4v1744303175230!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </section>
     </div>
@@ -871,17 +828,17 @@
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>+1 234 567 890</span>
+                        <span>+91 1234567890</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
-                        <span>info@educationschool.com</span>
+                        <span>info@insightmission.org</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Education School. All rights reserved.</p>
+            <p>&copy; 2025 Insight Mission. All rights reserved.</p>
         </div>
     </footer>
 
@@ -894,48 +851,33 @@
             navLinks.classList.toggle('active');
         });
 
-        // Filter Functionality
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const classCards = document.querySelectorAll('.class-card');
+        // Form Validation and Submission
+        const contactForm = document.getElementById('contactForm');
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterBtns.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                btn.classList.add('active');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-                const filter = btn.getAttribute('data-filter');
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
 
-                classCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'block';
-                        setTimeout(() => {
-                            card.classList.add('visible');
-                        }, 100);
-                    } else {
-                        card.classList.remove('visible');
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 300);
-                    }
-                });
-            });
-        });
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
 
-        // Initial animation
-        classCards.forEach(card => {
-            setTimeout(() => {
-                card.classList.add('visible');
-            }, 100);
-        });
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
 
-        // Register button click handler
-        const registerBtns = document.querySelectorAll('.register-btn');
-        registerBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('Registration form will open in a new window.');
-            });
+            // Show success message
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
         });
     </script>
 </body>
