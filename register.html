@@ -7,19 +7,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="register.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js" defer></script>
+    <script src="js/register.js" defer></script>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
         <a href="index.html" class="logo">Insight Mission</a>
-        <div class="nav-links">
+        <div class="nav-links" id="nav-links">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="classes.html">Classes</a>
             <a href="gallery.html">Gallery</a>
             <a href="contact.html">Contact</a>
         </div>
-        <div class="hamburger">
+        <div class="hamburger" id="hamburger">
             <i class="fas fa-bars"></i>
         </div>
     </nav>
@@ -29,7 +33,7 @@
         <section class="registration-section">
             <div class="registration-container">
                 <div class="registration-header">
-                    <h1>Register for Classes</h1>
+                    <h1>Register for Class</h1>
                     <p>Fill out the form below to register for our classes</p>
                 </div>
                 <form id="registrationForm" class="registration-form">
@@ -129,19 +133,7 @@
                         <label for="pincode">Pincode</label>
                         <input type="text" id="pincode" name="pincode" required>
                     </div>
-                    <div class="form-group full-width">
-                        <label for="class">Select Class</label>
-                        <select id="class" name="class" required>
-                            <option value="">Select a Class</option>
-                            <option value="career-path">Career Path Discovery</option>
-                            <option value="interview-mastery">Interview Mastery</option>
-                            <option value="communication">Effective Communication</option>
-                            <option value="leadership">Leadership Development</option>
-                            <option value="mentoring">One-on-One Mentoring</option>
-                            <option value="group-mentoring">Group Mentoring Program</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="submit-btn">Submit Registration</button>
+                    <button type="button" class="submit-btn" onclick="initiatePayment()">Proceed to Payment</button>
                 </form>
             </div>
         </section>
@@ -179,17 +171,17 @@
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>+91 1234567890</span>
+                        <span>+1 234 567 890</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
-                        <span>info@insightmission.org</span>
+                        <span>info@educationschool.com</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Insight Mission. All rights reserved.</p>
+            <p>&copy; 2025 Education School. All rights reserved.</p>
         </div>
     </footer>
 
@@ -286,50 +278,76 @@
         document.addEventListener('DOMContentLoaded', () => {
             const courseDetails = getCourseDetails();
             
-            if (courseDetails) {
-                // Update course details display
-                document.querySelector('.course-title').textContent = courseDetails.title;
-                document.querySelector('.course-date').textContent = formatDate(courseDetails.date);
-                document.querySelector('.course-fee').textContent = `₹${courseDetails.fee}`;
-                
-                // Set the class select value based on the course title
-                const classSelect = document.getElementById('class');
-                const classOptions = {
-                    'Career Path Discovery': 'career-path',
-                    'Interview Mastery': 'interview-mastery',
-                    'Effective Communication': 'communication',
-                    'Leadership Development': 'leadership',
-                    'One-on-One Mentoring': 'mentoring',
-                    'Group Mentoring Program': 'group-mentoring'
-                };
-                
-                // Find the matching class option
-                const matchingClass = Object.entries(classOptions).find(([name, value]) => 
-                    courseDetails.title.toLowerCase().includes(name.toLowerCase())
-                );
-                
-                if (matchingClass) {
-                    classSelect.value = matchingClass[1];
-                }
+            if (!courseDetails) {
+                alert('No course details found. Please select a course first.');
+                return;
             }
 
-            // Remove course details from localStorage after form is loaded
-            localStorage.removeItem('courseDetails');
+            // Update course details display
+            document.querySelector('.course-title').textContent = courseDetails.title;
+            document.querySelector('.course-date').textContent = formatDate(courseDetails.date);
+            document.querySelector('.course-fee').textContent = `₹${courseDetails.fee}`;
         });
 
-        // Form submission handler
-        registrationForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
+        // Function to initiate payment
+        function initiatePayment() {
+            // Get course details from localStorage
+            const courseDetails = getCourseDetails();
+            if (!courseDetails) {
+                alert('No course details found. Please select a course first.');
+                return;
+            }
+
+            const amount = parseFloat(courseDetails.fee) * 100; // Convert to paise
+
             // Get form data
             const formData = new FormData(registrationForm);
             const data = Object.fromEntries(formData.entries());
 
+            // Create a new Razorpay order
+            const options = {
+                key: 'YOUR_RAZORPAY_KEY_ID',
+                amount: amount,
+                currency: 'INR',
+                name: 'Insight Mission',
+                description: `Registration Fee for ${courseDetails.title}`,
+                image: 'https://example.com/logo.png',
+                handler: function(response) {
+                    // Payment successful, submit form data to Supabase
+                    submitFormData(data, response.razorpay_payment_id, courseDetails);
+                    // Remove course details from localStorage after successful payment
+                    localStorage.removeItem('courseDetails');
+                },
+                prefill: {
+                    name: data.name,
+                    email: data.email,
+                    contact: data.phone
+                },
+                notes: {
+                    'course': courseDetails.title
+                },
+                theme: {
+                    color: '#528FF0'
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        }
+
+        // Function to submit form data to Supabase
+        async function submitFormData(data, paymentId, courseDetails) {
             try {
                 // Submit to Supabase
                 const { error } = await window.supabaseClient
                     .from('registrations')
-                    .insert([data]);
+                    .insert([{
+                        ...data,
+                        payment_id: paymentId,
+                        course_title: courseDetails.title,
+                        course_date: courseDetails.date,
+                        course_fee: courseDetails.fee
+                    }]);
 
                 if (error) throw error;
 
@@ -340,7 +358,67 @@
                 console.error('Error submitting registration:', error);
                 alert('Error submitting registration. Please try again.');
             }
+        }
+
+        // Hamburger menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close hamburger menu when link is clicked
+        navLinks.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('active');
+            }
         });
     </script>
+
+    <style>
+        /* Add styles for hamburger menu */
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            z-index: 1;
+            display: none;
+        }
+
+        .nav-links.active {
+            display: block;
+        }
+
+        .nav-links a {
+            padding: 1rem;
+            display: block;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                flex-direction: row;
+                position: static;
+                background-color: transparent;
+                border: none;
+                box-shadow: none;
+            }
+
+            .nav-links a {
+                padding: 1rem 2rem;
+            }
+        }
+    </style>
 </body>
 </html>
