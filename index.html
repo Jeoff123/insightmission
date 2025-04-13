@@ -2,165 +2,854 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insight Mission - Empowering Lives Through Education</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Insight Mission - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .featured-class-section {
+            padding: 4rem 0;
+            background: #f8fafc;
+            text-align: center;
+        }
+
+        .featured-class-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .featured-class-info {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .featured-class-info img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .featured-class-info .class-details {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .featured-class-info h3 {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .featured-class-info .title-description {
+            color: #4b5563;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+
+        .featured-class-info .course-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .featured-class-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #4b5563;
+            font-size: 0.9rem;
+            flex: 1 1 45%;
+        }
+
+        .featured-class-info .info-item i {
+            color: #2563eb;
+            font-size: 1.2rem;
+        }
+
+        .featured-class-info .fee {
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        /* Register button below content */
+        .featured-class-info .register-btn {
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            max-width: 200px;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            margin-top: 2rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .featured-class-info .register-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .featured-class-info .register-btn i {
+            font-size: 1rem;
+            margin-right: 0.3rem;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .featured-class-info .register-btn:hover i {
+            transform: translateX(2px);
+        }
+
+        /* Loading State Styles */
+        .loading-state {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .loading-image {
+            width: 100%;
+            height: 250px;
+            background: var(--light-bg);
+        }
+
+        .loading-info {
+            padding: 1.5rem;
+        }
+
+        .loading-title,
+        .loading-description,
+        .loading-item,
+        .loading-button {
+            background: var(--light-bg);
+            border-radius: 8px;
+            animation: shimmer 1.5s infinite;
+        }
+
+        .loading-title {
+            height: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .loading-description {
+            width: 50%;
+            height: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .loading-course-info {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .loading-item {
+            flex: 1 1 45%;
+            height: 1.2rem;
+        }
+
+        .loading-button {
+            width: 200px;
+            height: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .featured-class-container {
+                padding: 0 0.5rem;
+            }
+
+            .featured-class-info {
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .featured-class-info img {
+                height: 200px;
+            }
+
+            .featured-class-info .class-details {
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .featured-class-info h3 {
+                font-size: 1.3rem;
+            }
+
+            .featured-class-info .title-description {
+                font-size: 0.85rem;
+                line-height: 1.5;
+                margin-bottom: 2rem;
+            }
+
+            .featured-class-info .course-info {
+                padding-top: 1rem;
+                border-top: 1px solid #e5e7eb;
+            }
+
+            .featured-class-info .info-item {
+                flex: 1 1 100%;
+            }
+
+            .featured-class-cta {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+        }
+
+        /* Button styles */
+        .cta-button,
+        .view-all-btn,
+        .register-btn,
+        .learn-more-btn,
+        .contact-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            position: relative;
+            overflow: hidden;
+            margin: 1rem 0;
+            width: 100%;
+            max-width: 200px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button::after,
+        .view-all-btn::after,
+        .register-btn::after,
+        .learn-more-btn::after,
+        .contact-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(0);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .cta-button:hover::after,
+        .view-all-btn:hover::after,
+        .register-btn:hover::after,
+        .learn-more-btn:hover::after,
+        .contact-btn:hover::after {
+            transform: scale(1);
+        }
+
+        .cta-button i,
+        .view-all-btn i,
+        .register-btn i,
+        .learn-more-btn i,
+        .contact-btn i {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Featured class button */
+        .featured-class-cta {
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            max-width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            position: relative;
+            overflow: hidden;
+            margin: 1rem auto;
+            display: block;
+        }
+
+        .featured-class-cta:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .featured-class-cta i {
+            font-size: 1rem;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .featured-class-cta:hover i {
+            transform: translateX(2px);
+        }
+
+        /* View All button in classes section */
+        .view-all-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* Contact button in contact section */
+        .contact-btn {
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            max-width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            position: relative;
+            overflow: hidden;
+            margin: 1rem auto;
+            display: block;
+        }
+
+        .contact-btn:hover {
+            background: var(--primary-color-dark);
+            transform: translateY(-2px);
+        }
+
+        .collaboration-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar" id="navbar">
-        <div class="logo-container">
-            <img src="images/logo.jpeg" alt="Insight Mission Logo" class="logo-img">
-            <span class="logo-text">Insight Mission</span>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">Insight Mission</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="classes.html">Classes</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
         </div>
-        <div class="menu-toggle" id="menu-toggle">
+        <div class="hamburger">
             <i class="fas fa-bars"></i>
         </div>
-        <div class="menu-close" id="menu-close">
-            <i class="fas fa-times"></i>
-        </div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#programs">Programs</a></li>
-            <li><a href="#mission">Mission</a></li>
-            <li><a href="#collaborations">Collaborations</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
     </nav>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 data-text="&quot;If you are planning for a year, sow rice.<br>
-                If you are planning for a decade, plant trees.<br>
-                If you are planning for a lifetime, educate people.&quot;">
-                "If you are planning for a year, sow rice.<br>
-                If you are planning for a decade, plant trees.<br>
-                If you are planning for a lifetime, educate people."
-            </h1>
-            <p>Fostering education, career, and life through mentoring and training since 1998.</p>
-            <a href="#programs" class="btn btn-primary" aria-label="Explore our programs">Join a Program</a>
-        </div>
-    </section>
-
-    <section id="programs" class="programs">
-        <h2>What We Offer</h2>
-        <div class="programs-grid">
-            <div class="program-card">
-                <i class="fas fa-hand-holding-heart"></i>
-                <h3>Couple Mentoring Sessions</h3>
-                <p>Building stronger bonds through guided dialogue</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Transform Your Future Through Education & Mentorship</h1>
+                <div class="quote-box">
+                    <p class="quote-line">"If you are planning for a year, sow rice.<br>If you are planning for a decade, plant trees.<br>If you are planning for a lifetime, educate people."</p>
+                </div>
+                <div class="hero-cta">
+                    <a href="classes.html" class="cta-button primary">
+                        <i class="fas fa-graduation-cap"></i>
+                        Explore Programs
+                    </a>
+                    <a href="contact.html" class="cta-button secondary">
+                        <i class="fas fa-envelope"></i>
+                        Get in Touch
+                    </a>
+                </div>
             </div>
-            <div class="program-card">
-                <i class="fas fa-child"></i>
-                <h3>Parenting Guidance Program</h3>
-                <p>Equip parents to raise confident children</p>
-            </div>
-            <div class="program-card">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <h3>Teacher/Faculty Development</h3>
-                <p>Empower educators with modern tools</p>
-            </div>
-            <div class="program-card">
-                <i class="fas fa-graduation-cap"></i>
-                <h3>Career Guidance</h3>
-                <p>Helping youth discover the right paths</p>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3" alt="Education and Mentorship">
             </div>
         </div>
     </section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About</h2>
-            <div class="about-text">
-                <p>Insight Mission is a Human Resource Development initiative committed to fostering deep education, meaningful careers, and an enriched quality of life among young people. Founded in 1998 in Mavelikara, Kerala, by Sunil D. Kuruvilla—a distinguished human development trainer, educator, career counsellor, and passionate speaker—Insight Mission has grown into a dynamic organisation with a wide reach across Kerala and beyond.</p>
-                <a href="#" class="btn btn-secondary">Read More</a>
+    <!-- Mission Statement Section -->
+    <section class="mission-section">
+        <div class="mission-card">
+            <div class="mission-content">
+                <h2>Our Mission</h2>
+                <p>Our core mission is the holistic development of young people. We believe in nurturing their potential, guiding them towards the right career paths, and supporting them in leading purposeful lives. To achieve this, we engage in continuous research, design innovative solutions to youth-related challenges, and partner with various institutions to deliver high-impact programs.</p>
             </div>
-            <div class="stats">
+            <div class="mission-stats">
                 <div class="stat-item">
-                    <h3>4000+</h3>
+                    <h3>400+</h3>
                     <p>Programs</p>
                 </div>
                 <div class="stat-item">
-                    <h3>10000+</h3>
-                    <p>Happy&nbsp;Clients</p>
+                    <h3>10,000+</h3>
+                    <p>Happy Clients</p>
                 </div>
                 <div class="stat-item">
                     <h3>100%</h3>
-                    <p>Success&nbsp;rate</p>
+                    <p>Success Rate</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="mission" class="mission">
-        <div class="container">
-            <h2>Our Mission</h2>
+    <!-- Our Collaborations Section -->
+    <section class="mission-section">
+        <div class="mission-card">
             <div class="mission-content">
-                <p>Our core mission is the holistic development of young people. We believe in nurturing their potential, guiding them towards the right career paths, and supporting them in leading purposeful lives. To achieve this, we engage in continuous research, design innovative solutions to youth-related challenges, and partner with various institutions to deliver high-impact programs.</p>
+                <h2>Our Collaborations</h2>
+                <p>We believe in the power of partnerships to create meaningful change. By working closely with a wide range of institutions and organizations, we ensure our programs reach diverse communities and make a lasting impact. Our collaborations foster mutual growth, enable knowledge sharing, and help us empower individuals through education, mentorship, and community engagement.</p>
             </div>
-        </div>
-    </section>
-
-    <section id="collaborations" class="collaborations">
-        <div class="container">
-            <h2>Our Collaborations</h2>
-            <div class="collaborations-grid">
-                <div class="collaboration-item">
-                    <i class="fas fa-school"></i>
+            <div class="mission-stats">
+                <div class="stat-item">
+                    <i class="fas fa-school collaboration-icon"></i>
                     <p>Schools</p>
                 </div>
-                <div class="collaboration-item">
-                    <i class="fas fa-university"></i>
-                    <p>Colleges & Universities</p>
+                <div class="stat-item">
+                    <i class="fas fa-university collaboration-icon"></i>
+                    <p>Colleges and Universities</p>
                 </div>
-                <div class="collaboration-item">
-                    <i class="fas fa-users"></i>
+                <div class="stat-item">
+                    <i class="fas fa-users collaboration-icon"></i>
                     <p>Youth Organisations</p>
                 </div>
-                <div class="collaboration-item">
-                    <i class="fas fa-building"></i>
-                    <p>Religious & Cultural</p>
-                </div>
-                <div class="collaboration-item">
-                    <i class="fas fa-handshake"></i>
-                    <p>Political & Social</p>
+                <div class="stat-item">
+                    <i class="fas fa-handshake collaboration-icon"></i>
+                    <p>Political and Social Organisations</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>About Us</h4>
-                    <p>Empowering students through quality education and innovative learning experiences. Join us on the journey to academic excellence.</p>
+    <!-- Featured Class Section -->
+    <section class="featured-class-section">
+        <div class="featured-class-container">
+            <div class="featured-class-info">
+                <!-- Loading state -->
+                <div class="loading-state">
+                    <div class="loading-image"></div>
+                    <div class="loading-info">
+                        <div class="loading-title"></div>
+                        <div class="loading-description"></div>
+                        <div class="loading-course-info">
+                            <div class="loading-item"></div>
+                            <div class="loading-item"></div>
+                            <div class="loading-item"></div>
+                        </div>
+                        <div class="loading-button"></div>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#programs">Classes</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
+                <div class="content-wrapper">
+                    <h3>Class Title</h3>
+                    <p class="title-description">Class description goes here</p>
+                    <div class="course-info">
+                        <div class="info-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Start Date</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Time</span>
+                        </div>
+                        <div class="info-item fee">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Fee</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <p>INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</p>
-                    <p>+1 (123) 456-7890</p>
-                    <p>info@insightmission.org</p>
+                <a href="register.html" class="register-btn" onclick="storeCourseDetails('${upcomingClass.title}', '${upcomingClass.date}', '${formattedTime}', '${upcomingClass.fee}')">
+                    <i class="fas fa-calendar-alt"></i>
+                    Register Now
+                </a>
+            </div>
+            <a href="classes.html" class="cta-button primary featured-class-cta">
+                <i class="fas fa-calendar-alt"></i>
+                View All Classes
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Wait for Supabase client to be ready
+        window.supabaseClientReady = new Promise((resolve) => {
+            const checkClient = () => {
+                if (window.supabaseClient) {
+                    resolve();
+                } else {
+                    setTimeout(checkClient, 100);
+                }
+            };
+            checkClient();
+        });
+
+        // Load featured class
+        async function loadFeaturedClass() {
+            try {
+                await window.supabaseClientReady;
+                const upcomingClass = await window.fetchUpcomingClass();
+                
+                if (upcomingClass) {
+                    const startTime = new Date(upcomingClass.date);
+                    const formattedDate = startTime.toLocaleDateString('en-IN');
+                    const formattedTime = startTime.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+                    
+                    const featuredClassElement = document.querySelector('.featured-class-info');
+                    if (featuredClassElement) {
+                        featuredClassElement.innerHTML = `
+                            <img src="${upcomingClass.image_url}" alt="${upcomingClass.title}">
+                            <div class="class-details">
+                                <h3>${upcomingClass.title}</h3>
+                                <p class="title-description">${upcomingClass.description}</p>
+                                <div class="course-info">
+                                    <div class="info-item">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>${formattedDate}</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>${formattedTime}</span>
+                                    </div>
+                                    <div class="info-item fee">
+                                        <i class="fas fa-rupee-sign"></i>
+                                        <span>₹${upcomingClass.fee}</span>
+                                    </div>
+                                </div>
+                                <a href="register.html" class="register-btn" onclick="storeCourseDetails('${upcomingClass.title}', '${upcomingClass.date}', '${formattedTime}', '${upcomingClass.fee}')">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    Register Now
+                                </a>
+                            </div>
+                        `;
+                        featuredClassElement.classList.add('loaded');
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading featured class:', error);
+                const featuredClassElement = document.querySelector('.featured-class-info');
+                if (featuredClassElement) {
+                    featuredClassElement.innerHTML = `
+                        <div class="loading-state">
+                            <div class="loading-image"></div>
+                            <div class="loading-info">
+                                <div class="loading-title"></div>
+                                <div class="loading-description"></div>
+                                <div class="loading-course-info">
+                                    <div class="loading-item"></div>
+                                    <div class="loading-item"></div>
+                                    <div class="loading-item"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Function to store course details in localStorage
+        window.storeCourseDetails = function(title, date, time, fee) {
+            const courseDetails = {
+                title: title,
+                date: date,
+                time: time,
+                fee: fee
+            };
+            localStorage.setItem('courseDetails', JSON.stringify(courseDetails));
+            console.log('Course details stored:', courseDetails);
+        };
+
+        // Load featured class when page loads
+        document.addEventListener('DOMContentLoaded', loadFeaturedClass);
+
+        // Navbar Scroll Effect
+        const navbar = document.querySelector('.navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Navbar Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Image Slider
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        // Auto slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Scroll Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.class-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+
+        // Initialize page
+        async function initializePage() {
+            try {
+                await loadClassData();
+            } catch (error) {
+                console.error('Error initializing page:', error);
+            }
+        }
+
+        // Listen for storage changes from other windows/tabs
+        window.addEventListener('storage', async (event) => {
+            if (event.key === 'classesData') {
+                try {
+                    const newData = JSON.parse(event.newValue);
+                    classesData = newData;
+                    console.log('Data updated from storage event:', classesData);
+                    renderUpcomingClasses();
+                } catch (error) {
+                    console.error('Error handling storage event:', error);
+                }
+            }
+        });
+
+        // Listen for class data updates from other pages
+        window.addEventListener('classDataUpdated', (event) => {
+            classesData = event.detail.data;
+            console.log('Data updated from event:', classesData);
+            renderUpcomingClasses();
+        });
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="testimonials-card">
+            <h2>Success Stories</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>The career guidance workshop helped me discover my true potential and land my dream job. The mentors were incredibly supportive!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3" alt="Sarah Johnson">
+                        <div>
+                            <h4>Sarah Johnson</h4>
+                            <p>Marketing Manager</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>The life skills training transformed my approach to work and personal relationships. I'm more confident and effective in everything I do.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3" alt="Michael Chen">
+                        <div>
+                            <h4>Michael Chen</h4>
+                            <p>Software Engineer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>The mentorship program provided me with invaluable insights and connections that accelerated my career growth significantly.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3" alt="Priya Patel">
+                        <div>
+                            <h4>Priya Patel</h4>
+                            <p>Business Consultant</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Insight Mission. All rights reserved.</p>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Ready to Transform Your Future?</h2>
+            <p>Join our community of learners and take the first step towards your success</p>
+            <div class="cta-buttons">
+                <a href="classes.html" class="cta-button primary">
+                    <i class="fas fa-graduation-cap"></i>
+                    View All Programs
+                </a>
+                <a href="contact.html" class="cta-button secondary">
+                    <i class="fas fa-envelope"></i>
+                    Get in Touch
+                </a>
             </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Empowering students through quality education and innovative learning experiences. Join us on the journey to academic excellence.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="classes.html">Classes</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (123) 456-7890</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@insightmission.org</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Insight Mission. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/data.js"></script>
+
+    <script>
+        // Function to initialize the page
+        async function initializePage() {
+            try {
+                await loadClassData();
+            } catch (error) {
+                console.error('Error initializing page:', error);
+            }
+        }
+
+        // Listen for storage changes from other windows/tabs
+        window.addEventListener('storage', async (event) => {
+            if (event.key === 'classesData') {
+                try {
+                    const newData = JSON.parse(event.newValue);
+                    classesData = newData;
+                    console.log('Data updated from storage event:', classesData);
+                    renderUpcomingClasses();
+                } catch (error) {
+                    console.error('Error handling storage event:', error);
+                }
+            }
+        });
+
+        // Listen for class data updates from other pages
+        window.addEventListener('classDataUpdated', (event) => {
+            classesData = event.detail.data;
+            console.log('Data updated from event:', classesData);
+            renderUpcomingClasses();
+        });
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
 </body>
 </html>
