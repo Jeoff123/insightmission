@@ -1,7 +1,7 @@
 :root {
     --primary-color: #2563eb;
     --secondary-color: #3b82f6;
-    --accent-color: #ff7e34;
+    --accent-color: #f2ff00;
     --text-color: #1f2937;
     --light-bg: #f3f4f6;
     --card-bg: #ffffff;
@@ -197,7 +197,7 @@ body {
 .quote-line {
     font-size: 1.5rem;
     font-weight: 500;
-    color: var(--accent-color);
+    color: #cdffcd;
     margin: 0;
     padding: 0 0.8rem;
     position: relative;
