@@ -30,7 +30,32 @@ window.addEventListener('scroll', () => {
 
 // Mobile menu toggle
 const menuToggle = document.getElementById('menu-toggle');
+const menuClose = document.getElementById('menu-close');
 const navLinks = document.getElementById('nav-links');
+const navLinksList = document.querySelectorAll('.nav-links a');
+
 menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('active');
+    if (navLinks.classList.contains('active')) {
+        menuToggle.style.display = 'none';
+        menuClose.style.display = 'block';
+    } else {
+        menuToggle.style.display = 'block';
+        menuClose.style.display = 'none';
+    }
+});
+
+menuClose.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+    menuToggle.style.display = 'block';
+    menuClose.style.display = 'none';
+});
+
+// Close menu when clicking on a link
+navLinksList.forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.style.display = 'block';
+        menuClose.style.display = 'none';
+    });
 });

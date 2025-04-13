@@ -272,6 +272,45 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-primary);
 }
 
+/* Mobile Menu Close Button */
+.menu-close {
+    display: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--primary);
+    z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    .menu-close {
+        display: none;
+    }
+    
+    .nav-links.active + .menu-close {
+        display: block;
+    }
+    
+    /* Navbar */
+    .navbar {
+        padding: 1rem;
+        position: relative;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    .menu-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1000;
+    }
+}
+
 /* Mobile Styles */
 @media (max-width: 768px) {
     .navbar {
@@ -331,6 +370,13 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     z-index: 1;
     padding: 2rem;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        margin-top: 5rem;
+    }
 }
 
 .hero h1 {
@@ -431,11 +477,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .programs h2 {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     color: var(--primary);
     text-shadow: 0 2px 4px rgba(26, 35, 126, 0.1);
     font-family: 'Playfair Display', serif;
     font-weight: 600;
+    font-size: 2.5rem;
 }
 
 .programs-grid {
@@ -1555,5 +1602,149 @@ select:hover {
     .cta-button {
         padding: 0.875rem 1.75rem;
         font-size: 1rem;
+    }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    /* Hero Section */
+    .hero {
+        padding: 5rem 1rem;
+        text-align: center;
+    }
+    
+    .hero-content {
+        margin-top: 4rem;
+        padding: 2rem 1rem;
+    }
+    
+    .hero-content h1 {
+        font-size: clamp(2rem, 5vw, 2.5rem);
+        line-height: 1.4;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-content .btn {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    /* Navbar */
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .logo-container {
+        gap: 0.5rem;
+    }
+    
+    .logo-img {
+        width: 60px;
+    }
+    
+    .logo-text {
+        font-size: 1.2rem;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--background-dark);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        transition: left 0.3s ease;
+        z-index: 999;
+    }
+    
+    .nav-links.active {
+        left: 0;
+    }
+    
+    .nav-links li {
+        margin: 1rem 0;
+    }
+    
+    .nav-links a {
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    /* Programs Section */
+    .programs-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .program-card {
+        padding: 1.5rem;
+    }
+    
+    .program-card i {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Stats */
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .stat-item {
+        text-align: center;
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .footer-section {
+        text-align: center;
+    }
+    
+    .footer-section h4 {
+        margin-bottom: 1rem;
+    }
+    
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .footer-links li {
+        margin: 0;
+    }
+}
+
+/* Tablet View */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-content h1 {
+        font-size: clamp(2.5rem, 5vw, 3rem);
+    }
+    
+    .programs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
     }
 }
