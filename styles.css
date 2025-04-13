@@ -1327,13 +1327,14 @@ footer::before {
     .social-icons {
         justify-content: center;
     }
+    
 }
 
 /* Living Elements */
 .hero-image img {
     transition: transform var(--transition-speed) ease;
-    height:400px;
-    width:400px;
+    height:350px;
+    width:350px;
 }
 
 .hero-image:hover img {
