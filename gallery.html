@@ -31,23 +31,25 @@
                 <h2>Our Gallery</h2>
                 <p>Explore our past events, workshops, and success stories</p>
             </div>
-            <div id="gallery-container" class="gallery-container"></div>
+            <div class="gallery-container" id="gallery-container"></div>
         </section>
     </div>
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
-            <span class="close-lightbox">&times;</span>
             <div class="lightbox-navigation">
-                <button class="prev-button" title="Previous Image">
+                <button class="prev-button" aria-label="Previous image">
                     <i class="fas fa-chevron-left"></i>
                 </button>
                 <img src="" alt="Gallery Image" id="lightbox-image">
-                <button class="next-button" title="Next Image">
+                <button class="next-button" aria-label="Next image">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
+            <button class="close-lightbox" aria-label="Close lightbox">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
     </div>
 
@@ -67,7 +69,6 @@
 
         // Function to handle image loading
         function handleImageLoad(imageElement, galleryItem) {
-            // If image fails to load, remove the gallery item
             imageElement.onerror = function() {
                 galleryItem.remove();
             };
@@ -80,68 +81,58 @@
             const closeLightbox = document.querySelector('.close-lightbox');
             const prevButton = document.querySelector('.prev-button');
             const nextButton = document.querySelector('.next-button');
+            
+            // Get all gallery items and images
             const galleryItems = document.querySelectorAll('.gallery-item');
-            const imageFiles = Array.from(galleryItems).map(item => item.querySelector('img').src);
-            let currentIndex = 0;
-
-            // Open lightbox
+            const galleryImages = Array.from(galleryItems).map(item => item.querySelector('img'));
+            
+            // Add click event to each gallery item
             galleryItems.forEach((item, index) => {
-                item.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const img = this.querySelector('img');
-                    lightboxImage.src = img.src;
-                    currentIndex = index;
+                item.addEventListener('click', () => {
                     lightbox.classList.add('active');
+                    lightboxImage.src = galleryImages[index].src;
+                    currentImageIndex = index;
                 });
             });
 
-            // Close lightbox when clicking the close button
+            // Close lightbox
             closeLightbox.addEventListener('click', () => {
                 lightbox.classList.remove('active');
             });
 
-            // Close lightbox with ESC key
-            document.addEventListener('keydown', (e) => {
-                if (lightbox.classList.contains('active') && e.key === 'Escape') {
+            // Close lightbox when clicking outside
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
                     lightbox.classList.remove('active');
                 }
             });
 
-            // Previous image
-            prevButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    lightboxImage.src = imageFiles[currentIndex];
-                }
+            // Navigation
+            let currentImageIndex = 0;
+            
+            prevButton.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                lightboxImage.src = galleryImages[currentImageIndex].src;
             });
 
-            // Next image
-            nextButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (currentIndex < imageFiles.length - 1) {
-                    currentIndex++;
-                    lightboxImage.src = imageFiles[currentIndex];
-                }
+            nextButton.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                lightboxImage.src = galleryImages[currentImageIndex].src;
             });
 
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {
                 if (lightbox.classList.contains('active')) {
-                    if (e.key === 'ArrowLeft') {
-                        prevButton.click();
-                    } else if (e.key === 'ArrowRight') {
-                        nextButton.click();
-                    }
-                }
-            });
-
-            // Add click handler to document
-            document.addEventListener('click', (e) => {
-                if (lightbox.classList.contains('active')) {
-                    // If click is outside the lightbox content
-                    if (!lightbox.contains(e.target)) {
-                        lightbox.classList.remove('active');
+                    switch(e.key) {
+                        case 'Escape':
+                            lightbox.classList.remove('active');
+                            break;
+                        case 'ArrowLeft':
+                            prevButton.click();
+                            break;
+                        case 'ArrowRight':
+                            nextButton.click();
+                            break;
                     }
                 }
             });
