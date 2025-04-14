@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="gallery.css">
     <style>
         .slide-right {
-            animation: slide-right 0.5s;
+            animation: slide-right 0.3s ease-out;
         }
         .slide-left {
-            animation: slide-left 0.5s;
+            animation: slide-left 0.3s ease-out;
         }
         .fade-in {
-            animation: fade-in 0.5s;
+            animation: fade-in 0.2s ease-in;
         }
         @keyframes slide-right {
             from {
@@ -173,8 +173,8 @@
                     // Remove fade-in after it completes
                     setTimeout(() => {
                         lightboxImage.classList.remove('fade-in');
-                    }, 500);
-                }, 500);
+                    }, 200);
+                }, 300);
             });
 
             nextButton.addEventListener('click', () => {
@@ -196,8 +196,8 @@
                     // Remove fade-in after it completes
                     setTimeout(() => {
                         lightboxImage.classList.remove('fade-in');
-                    }, 500);
-                }, 500);
+                    }, 200);
+                }, 300);
             });
 
             // Touch swipe functionality
@@ -233,8 +233,8 @@
                             lightboxImage.classList.add('fade-in');
                             setTimeout(() => {
                                 lightboxImage.classList.remove('fade-in');
-                            }, 500);
-                        }, 500);
+                            }, 200);
+                        }, 300);
                     } else {
                         // Swipe left - go to next image
                         lightboxImage.classList.add('slide-left');
@@ -245,8 +245,8 @@
                             lightboxImage.classList.add('fade-in');
                             setTimeout(() => {
                                 lightboxImage.classList.remove('fade-in');
-                            }, 500);
-                        }, 500);
+                            }, 200);
+                        }, 300);
                     }
                 }
                 isSwiping = false;
