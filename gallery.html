@@ -7,6 +7,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="gallery.css">
+    <style>
+        .slide-right {
+            animation: slide-right 0.5s;
+        }
+        .slide-left {
+            animation: slide-left 0.5s;
+        }
+        .fade-in {
+            animation: fade-in 0.5s;
+        }
+        @keyframes slide-right {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(100%);
+            }
+        }
+        @keyframes slide-left {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -120,13 +155,49 @@
             let currentImageIndex = 0;
             
             prevButton.addEventListener('click', () => {
-                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-                lightboxImage.src = galleryImages[currentImageIndex].src;
+                const lightboxImage = document.getElementById('lightbox-image');
+                const galleryImages = Array.from(document.querySelectorAll('.gallery-item img'));
+                
+                // Add slide animation class
+                lightboxImage.classList.add('slide-right');
+                
+                // Wait for animation to complete
+                setTimeout(() => {
+                    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                    lightboxImage.src = galleryImages[currentImageIndex].src;
+                    
+                    // Remove slide class and add fade-in
+                    lightboxImage.classList.remove('slide-right');
+                    lightboxImage.classList.add('fade-in');
+                    
+                    // Remove fade-in after it completes
+                    setTimeout(() => {
+                        lightboxImage.classList.remove('fade-in');
+                    }, 500);
+                }, 500);
             });
 
             nextButton.addEventListener('click', () => {
-                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-                lightboxImage.src = galleryImages[currentImageIndex].src;
+                const lightboxImage = document.getElementById('lightbox-image');
+                const galleryImages = Array.from(document.querySelectorAll('.gallery-item img'));
+                
+                // Add slide animation class
+                lightboxImage.classList.add('slide-left');
+                
+                // Wait for animation to complete
+                setTimeout(() => {
+                    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                    lightboxImage.src = galleryImages[currentImageIndex].src;
+                    
+                    // Remove slide class and add fade-in
+                    lightboxImage.classList.remove('slide-left');
+                    lightboxImage.classList.add('fade-in');
+                    
+                    // Remove fade-in after it completes
+                    setTimeout(() => {
+                        lightboxImage.classList.remove('fade-in');
+                    }, 500);
+                }, 500);
             });
 
             // Touch swipe functionality
@@ -145,16 +216,37 @@
             });
 
             lightboxImage.addEventListener('touchend', () => {
-                const swipeThreshold = 50; // Minimum swipe distance in pixels
+                const swipeThreshold = 50;
                 const swipeLength = touchEndX - touchStartX;
 
                 if (Math.abs(swipeLength) > swipeThreshold) {
+                    const lightboxImage = document.getElementById('lightbox-image');
+                    const galleryImages = Array.from(document.querySelectorAll('.gallery-item img'));
+                    
                     if (swipeLength > 0) {
                         // Swipe right - go to previous image
-                        prevButton.click();
+                        lightboxImage.classList.add('slide-right');
+                        setTimeout(() => {
+                            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                            lightboxImage.src = galleryImages[currentImageIndex].src;
+                            lightboxImage.classList.remove('slide-right');
+                            lightboxImage.classList.add('fade-in');
+                            setTimeout(() => {
+                                lightboxImage.classList.remove('fade-in');
+                            }, 500);
+                        }, 500);
                     } else {
                         // Swipe left - go to next image
-                        nextButton.click();
+                        lightboxImage.classList.add('slide-left');
+                        setTimeout(() => {
+                            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                            lightboxImage.src = galleryImages[currentImageIndex].src;
+                            lightboxImage.classList.remove('slide-left');
+                            lightboxImage.classList.add('fade-in');
+                            setTimeout(() => {
+                                lightboxImage.classList.remove('fade-in');
+                            }, 500);
+                        }, 500);
                     }
                 }
                 isSwiping = false;
