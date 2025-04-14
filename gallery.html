@@ -31,280 +31,227 @@
                 <h2>Our Gallery</h2>
                 <p>Explore our past events, workshops, and success stories</p>
             </div>
-            <div class="gallery-grid">
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3" alt="Career Workshop">
-                    <div class="gallery-card-content">
-                        <h3>Career Workshop</h3>
-                        <p class="date">March 15, 2024</p>
-                        <p class="location">Insight Mission Center</p>
-                        <p class="description">Interactive workshop on career development and job search strategies.</p>
-                        <a href="#" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3" alt="Life Skills Training">
-                    <div class="gallery-card-content">
-                        <h3>Life Skills Training</h3>
-                        <p class="date">March 22, 2024</p>
-                        <p class="location">Insight Mission Center</p>
-                        <p class="description">Comprehensive training on essential life skills for personal growth.</p>
-                        <a href="#" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3" alt="One-on-One Mentoring">
-                    <div class="gallery-card-content">
-                        <h3>One-on-One Mentoring</h3>
-                        <p class="date">March 29, 2024</p>
-                        <p class="location">Insight Mission Center</p>
-                        <p class="description">Personalized mentoring sessions with industry experts.</p>
-                        <a href="#" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3" alt="Group Mentoring">
-                    <div class="gallery-card-content">
-                        <h3>Group Mentoring</h3>
-                        <p class="date">April 5, 2024</p>
-                        <p class="location">Insight Mission Center</p>
-                        <p class="description">Collaborative learning through group mentoring sessions.</p>
-                        <a href="#" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3" alt="Annual Meetup">
-                    <div class="gallery-card-content">
-                        <h3>Annual Meetup</h3>
-                        <p class="date">April 12, 2024</p>
-                        <p class="location">Insight Mission Center</p>
-                        <p class="description">Annual gathering of our community members and alumni.</p>
-                        <a href="#" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?ixlib=rb-4.0.3" alt="Success Stories">
-                    <div class="gallery-card-content">
-                        <h3>Success Stories</h3>
-                        <p class="date">April 19, 2024</p>
-                        <p class="location">Insight Mission Center</p>
-                        <p class="description">Celebrating the achievements of our students and mentees.</p>
-                        <a href="#" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3" alt="Leadership Program">
-                    <div class="gallery-card-content">
-                        <h3>Leadership Program</h3>
-                        <p class="date">April 26, 2024</p>
-                        <p class="location">Insight Mission Center</p>
-                        <p class="description">Leadership development program for aspiring professionals.</p>
-                        <a href="#" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3" alt="Communication Skills">
-                    <div class="gallery-card-content">
-                        <h3>Communication Skills</h3>
-                        <p class="date">May 3, 2024</p>
-                        <p class="location">Insight Mission Center</p>
-                        <p class="description">Workshop on effective communication and public speaking.</p>
-                        <a href="#" class="view-more">View More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="view-all-container">
-                <a href="#" class="view-all-btn">
-                    View All Events
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
+            <div id="gallery-container" class="gallery-container"></div>
         </section>
     </div>
 
     <!-- Lightbox -->
-    <div class="lightbox">
+    <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
-            <span class="lightbox-close">&times;</span>
-            <img src="" alt="">
-            <div class="lightbox-nav lightbox-prev">
-                <i class="fas fa-chevron-left"></i>
-            </div>
-            <div class="lightbox-nav lightbox-next">
-                <i class="fas fa-chevron-right"></i>
+            <span class="close-lightbox">&times;</span>
+            <div class="lightbox-navigation">
+                <button class="prev-button" title="Previous Image">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <img src="" alt="Gallery Image" id="lightbox-image">
+                <button class="next-button" title="Next Image">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>About Us</h3>
-                <p>Empowering students through quality education and innovative learning experiences. Join us on the journey to academic excellence.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="classes.html">Classes</a>
-                    <a href="gallery.html">Gallery</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>Contact Info</h3>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+1 (123) 456-7890</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>info@insightmission.org</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Insight Mission. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script>
-        // Navbar Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-                navLinks.classList.remove('active');
-                hamburger.classList.remove('active');
-            }
-        });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                hamburger.classList.remove('active');
-            });
-        });
-
-        // Gallery Card Animation
-        const galleryCards = document.querySelectorAll('.gallery-card');
-
-        // Function to check if element is in viewport
-        function isInViewport(element) {
-            const rect = element.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
+        // Function to create a gallery item
+        function createGalleryItem(imagePath) {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            galleryItem.innerHTML = `
+                <img src="Gallery/${imagePath}" alt="Gallery Image" class="gallery-image">
+                <div class="gallery-overlay">
+                    <i class="fas fa-expand"></i>
+                </div>
+            `;
+            return galleryItem;
         }
 
-        // Function to handle scroll animation
-        function handleScrollAnimation() {
-            galleryCards.forEach(card => {
-                if (isInViewport(card)) {
-                    card.classList.add('visible');
-                }
-            });
+        // Function to handle image loading
+        function handleImageLoad(imageElement, galleryItem) {
+            // If image fails to load, remove the gallery item
+            imageElement.onerror = function() {
+                galleryItem.remove();
+            };
         }
 
-        // Initial animation
-        galleryCards.forEach(card => {
-            setTimeout(() => {
-                card.classList.add('visible');
-            }, 100);
-        });
+        // Function to initialize lightbox functionality
+        function initializeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const closeLightbox = document.querySelector('.close-lightbox');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const imageFiles = Array.from(galleryItems).map(item => item.querySelector('img').src);
+            let currentIndex = 0;
 
-        // Add scroll event listener
-        window.addEventListener('scroll', handleScrollAnimation);
-
-        // View More button click handler
-        const viewMoreBtns = document.querySelectorAll('.view-more');
-        viewMoreBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('More details will be shown in a new window.');
+            // Open lightbox
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const img = this.querySelector('img');
+                    lightboxImage.src = img.src;
+                    currentIndex = index;
+                    lightbox.classList.add('active');
+                });
             });
-        });
 
-        // Lightbox Functionality
-        const lightbox = document.querySelector('.lightbox');
-        const lightboxImg = lightbox.querySelector('img');
-        const lightboxClose = document.querySelector('.lightbox-close');
-        const lightboxPrev = document.querySelector('.lightbox-prev');
-        const lightboxNext = document.querySelector('.lightbox-next');
-        let currentImageIndex = 0;
-        const images = Array.from(galleryCards).map(card => ({
-            src: card.querySelector('img').src,
-            title: card.querySelector('h3').textContent,
-            date: card.querySelector('.date').textContent,
-            location: card.querySelector('.location').textContent,
-            description: card.querySelector('.description').textContent
-        }));
-
-        galleryCards.forEach((card, index) => {
-            card.addEventListener('click', () => {
-                currentImageIndex = index;
-                updateLightbox();
-                lightbox.classList.add('active');
+            // Close lightbox when clicking the close button
+            closeLightbox.addEventListener('click', () => {
+                lightbox.classList.remove('active');
             });
-        });
 
-        lightboxClose.addEventListener('click', () => {
-            lightbox.classList.remove('active');
-        });
-
-        lightboxPrev.addEventListener('click', () => {
-            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-            updateLightbox();
-        });
-
-        lightboxNext.addEventListener('click', () => {
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            updateLightbox();
-        });
-
-        function updateLightbox() {
-            lightboxImg.src = images[currentImageIndex].src;
-            lightboxImg.alt = images[currentImageIndex].title;
-        }
-
-        // Keyboard Navigation
-        document.addEventListener('keydown', (e) => {
-            if (lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') {
+            // Close lightbox with ESC key
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('active') && e.key === 'Escape') {
                     lightbox.classList.remove('active');
-                } else if (e.key === 'ArrowLeft') {
-                    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-                    updateLightbox();
-                } else if (e.key === 'ArrowRight') {
-                    currentImageIndex = (currentImageIndex + 1) % images.length;
-                    updateLightbox();
                 }
-            }
-        });
+            });
+
+            // Previous image
+            prevButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    lightboxImage.src = imageFiles[currentIndex];
+                }
+            });
+
+            // Next image
+            nextButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (currentIndex < imageFiles.length - 1) {
+                    currentIndex++;
+                    lightboxImage.src = imageFiles[currentIndex];
+                }
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') {
+                        prevButton.click();
+                    } else if (e.key === 'ArrowRight') {
+                        nextButton.click();
+                    }
+                }
+            });
+
+            // Add click handler to document
+            document.addEventListener('click', (e) => {
+                if (lightbox.classList.contains('active')) {
+                    // If click is outside the lightbox content
+                    if (!lightbox.contains(e.target)) {
+                        lightbox.classList.remove('active');
+                    }
+                }
+            });
+        }
+
+        // Function to load images from the Gallery folder
+        function loadGalleryImages() {
+            const galleryContainer = document.getElementById('gallery-container');
+            
+            // Clear existing gallery items
+            galleryContainer.innerHTML = '';
+
+            // List of image files in the Gallery folder
+            const imageFiles = [
+                '1.jpeg',
+                '2.jpeg',
+                '3.jpeg',
+                '4.jpeg',
+                '5.jpeg',
+                '6.jpeg',
+                '7.jpeg',
+                '8.jpeg',
+                '9.jpeg',
+                '10.jpeg',
+                '11.jpeg',
+                '12.jpeg',
+                '13.jpeg',
+                '14.jpeg',
+                '15.jpeg',
+                '16.jpeg',
+                '17.jpeg',
+                '18.jpeg',
+                '19.jpeg',
+                '20.jpeg',
+                '21.jpeg',
+                '22.jpeg',
+                '23.jpeg',
+                '24.jpeg',
+                '25.jpeg',
+                '26.jpeg',
+                '27.jpeg',
+                '28.jpeg',
+                '29.jpeg',
+                '30.jpeg',
+                '31.jpeg',
+                '32.jpeg',
+                '33.jpeg',
+                '34.jpeg',
+                '35.jpeg',
+                '36.jpeg',
+                '37.jpeg',
+                '38.jpeg',
+                '39.jpeg',
+                '40.jpeg',
+                '41.jpeg',
+                '42.jpeg',
+                '43.jpeg',
+                '44.jpeg',
+                '45.jpeg',
+                '46.jpeg',
+                '47.jpeg',
+                '48.jpeg',
+                '49.jpeg',
+                '50.jpeg',
+                '51.jpeg',
+                '52.jpeg',
+                '53.jpeg',
+                '54.jpeg',
+                '55.jpeg',
+                '56.jpeg',
+                '57.jpeg',
+                '58.jpeg',
+                '59.jpeg',
+                '60.jpeg',
+                '61.jpeg',
+                '62.jpeg',
+                '63.jpeg',
+                '64.jpeg',
+                '65.jpeg',
+                '66.jpeg',
+                '67.jpeg',
+                '68.jpeg',
+                '69.jpeg',
+                '70.jpeg',
+                '71.jpeg',
+                '72.jpeg',
+                '73.jpeg',
+                '74.jpeg',
+                '75.jpeg',
+                '76.jpeg',
+                '77.jpeg',
+                '78.jpeg'
+            ];
+
+            // Create gallery items for each image
+            imageFiles.forEach(imageFile => {
+                const galleryItem = createGalleryItem(imageFile);
+                galleryContainer.appendChild(galleryItem);
+
+                // Get the image element and set up error handling
+                const imageElement = galleryItem.querySelector('img');
+                handleImageLoad(imageElement, galleryItem);
+            });
+
+            // Initialize lightbox functionality
+            initializeLightbox();
+        }
+
+        // Load gallery images when the page loads
+        document.addEventListener('DOMContentLoaded', loadGalleryImages);
     </script>
 </body>
-</html> 
+</html>
