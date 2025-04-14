@@ -129,6 +129,37 @@
                 lightboxImage.src = galleryImages[currentImageIndex].src;
             });
 
+            // Touch swipe functionality
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let isSwiping = false;
+
+            lightboxImage.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                isSwiping = true;
+            });
+
+            lightboxImage.addEventListener('touchmove', (e) => {
+                if (!isSwiping) return;
+                touchEndX = e.touches[0].clientX;
+            });
+
+            lightboxImage.addEventListener('touchend', () => {
+                const swipeThreshold = 50; // Minimum swipe distance in pixels
+                const swipeLength = touchEndX - touchStartX;
+
+                if (Math.abs(swipeLength) > swipeThreshold) {
+                    if (swipeLength > 0) {
+                        // Swipe right - go to previous image
+                        prevButton.click();
+                    } else {
+                        // Swipe left - go to next image
+                        nextButton.click();
+                    }
+                }
+                isSwiping = false;
+            });
+
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {
                 if (lightbox.classList.contains('active')) {
