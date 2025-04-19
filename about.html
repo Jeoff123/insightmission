@@ -68,154 +68,245 @@
                     <p>Meet the founder of the Insight Mission</p>
                 </div>
                 <div class="team-grid">
-                    <div class="team-member" id="sunil-profile">
-                        <div class="profile-image">
-                            <img src="Gallery/42.jpeg" alt="Mr. Sunil D Kurivilla">
+                    <div class="team-member compact-founder" id="sunil-profile">
+  <div class="compact-header">
+    <div class="profile-image small">
+      <img src="Gallery/42.jpeg" alt="Mr. Sunil D Kurivilla">
+    </div>
+    <div class="compact-info">
+      <h3>Mr. Sunil D Kurivilla</h3>
+      <p class="role">Founder & CEO</p>
+      <button class="dropdown-toggle" onclick="toggleFounderDetails()">
+        <span id="dropdown-text">Show Details</span>
+        <i class="fas fa-chevron-down" id="dropdown-icon"></i>
+      </button>
+    </div>
+  </div>
+  <div class="founder-details" id="founder-details" style="display:none;">
+    <div class="profile-achievements" id="founder-achievements">
+<!-- Areas of Expertise Accordion Card -->
+<div class="achievement-card">
+    <button class="achievement-toggle" onclick="toggleAchievement(event, 0)">
+        <span>Areas of Expertise</span>
+        <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="achievement-panel" style="display:none;">
+        <div class="achievement-icon">
+            <i class="fas fa-lightbulb"></i>
+        </div>
+        <div class="achievement-content">
+            <ul>
+                <li>Human Resource Development (HRD)</li>
+                <li>Career Counselling & Educational Guidance</li>
+                <li>Life Skills & Personal Growth</li>
+                <li>Teacher/Faculty Development</li>
+                <li>Parenting & Family Counselling</li>
+                <li>Leadership & Team Building</li>
+                <li>Youth Empowerment Initiatives</li>
+                <li>Counselling Consultant & Career Faculty</li>
+                <li>MG University</li>
+                <li>Amrita University</li>
+                <li>Oxford Publications</li>
+                <li>Macmillan Education</li>
+                <li>Training Faculty</li>
+                <li>KSEB – PETARC</li>
+                <li>NTPC</li>
+                <li>HBS Technopark, Thiruvananthapuram</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Areas of Expertise -->
+<div class="achievement-card">
+    <button class="achievement-toggle" onclick="toggleAchievement(event, 1)">
+        <span>Qualifications</span>
+        <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="achievement-panel" style="display:none;">
+        <div class="achievement-icon">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="achievement-content">
+            <ul>
+                <li>MBA, M.Sc (Applied Psychology)</li>
+                <li>Certified HR Trainer</li>
+                <li>Certified Counsellor</li>
+                <li>Researcher in Social Psychology</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="achievement-card">
+    <button class="achievement-toggle" onclick="toggleAchievement(event, 2)">
+        <span>Professional Roles & Associations</span>
+        <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="achievement-panel" style="display:none;">
+        <div class="achievement-icon">
+            <i class="fas fa-briefcase"></i>
+        </div>
+        <div class="achievement-content">
+            <ul>
+                <li>Founder, Insight Mission, Kerala</li>
+                <li>Co-Founder, Astra-HR, Thiruvananthapuram</li>
+                <li>Chief Career Mentor, Bhaavi Career Consultants, Kochi</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="achievement-card">
+    <button class="achievement-toggle" onclick="toggleAchievement(event, 3)">
+        <span>Other Achievements</span>
+        <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="achievement-panel" style="display:none;">
+        <div class="achievement-icon">
+            <i class="fas fa-trophy"></i>
+        </div>
+        <div class="achievement-content">
+  <div class="achievement-row">
+    <div class="achievement-title"><strong>Leadership & Youth Training</strong></div>
+    <div class="achievement-points">
+      <ul>
+        <li>Leadership Trainer, Rotary International (RYLA)</li>
+        <li>Youth Training Consultant, National YMCA</li>
+      </ul>
+    </div>
+  </div>
+  <hr class="achievement-separator">
+  <div class="achievement-row">
+    <div class="achievement-title"><strong>Consultant Trainer</strong></div>
+    <div class="achievement-points">
+      <ul>
+        <li>AICTE</li>
+        <li>Labour</li>
+        <li>Employment</li>
+        <li>Collegiate Education</li>
+        <li>Higher Secondary Directorate</li>
+        <li>Youth Affairs</li>
+      </ul>
+    </div>
+  </div>
+  <hr class="achievement-separator">
+  <div class="achievement-row">
+    <div class="achievement-title"><strong>Counselling Consultant & Career Faculty</strong></div>
+    <div class="achievement-points">
+      <ul>
+        <li>MG University</li>
+        <li>Amrita University</li>
+        <li>Oxford Publications</li>
+        <li>Macmillan Education</li>
+      </ul>
+    </div>
+  </div>
+  <hr class="achievement-separator">
+  <div class="achievement-row">
+    <div class="achievement-title"><strong>Training Faculty</strong></div>
+    <div class="achievement-points">
+      <ul>
+        <li>KSEB – PETARC</li>
+        <li>NTPC</li>
+        <li>HBS Technopark, Thiruvananthapuram</li>
+      </ul>
+    </div>
+  </div>
+  <hr class="achievement-separator">
+  <div class="achievement-row">
+    <div class="achievement-title"><strong>Management & Marketing Skills Trainer</strong></div>
+    <div class="achievement-points">
+      <ul>
+        <li>Banking</li>
+        <li>Insurance</li>
+        <li>Retail</li>
+        <li>Healthcare</li>
+      </ul>
+    </div>
+  </div>
+  <hr class="achievement-separator">
+            
+        </div>
+    </div>
+</div>
+<!-- End Other Achievements -->
+
+                                
+     </div>
                         </div>
-                        <div class="profile-content">
-                            <div class="profile-header">
-                                <h3>Mr. Sunil D Kurivilla</h3>
-                                <p class="role">Founder & CEO</p>
+                        <div class="founder-description-wrapper">
+                            <p class="founder-description">
+                                With over 26 years of experience in Human Resource Development, Career Counselling, and Life Skills Training, Mr. Sunil D Kurivilla has successfully facilitated over 4200 programs, empowering thousands of individuals to reach their full potential.
+                            </p>
+                            <div class="social-links compact">
+                                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
                             </div>
-
-                            <div class="profile-achievements">
-                                <div class="achievement-card">
-                                    <div class="achievement-icon">
-                                        <i class="fas fa-graduation-cap"></i>
-                                    </div>
-                                    <div class="achievement-content">
-                                        <h4>Qualifications</h4>
-                                        <ul>
-                                            <li>MBA, M.Sc (Applied Psychology)</li>
-                                            <li>Certified HR Trainer</li>
-                                            <li>Certified Counsellor</li>
-                                            <li>Researcher in Social Psychology</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="achievement-card">
-                                    <div class="achievement-icon">
-                                        <i class="fas fa-briefcase"></i>
-                                    </div>
-                                    <div class="achievement-content">
-                                        <h4>Professional Roles & Associations</h4>
-                                        <ul>
-                                            <li>Founder, Insight Mission, Kerala</li>
-                                            <li>Co-Founder, Astra-HR, Thiruvananthapuram</li>
-                                            <li>Chief Career Mentor, Bhaavi Career Consultants, Kochi</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="achievement-card">
-                                    <div class="achievement-icon">
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <div class="achievement-content">
-                                        <h4>Areas of Expertise</h4>
-                                        <ul>
-                                            <li>Human Resource Development (HRD)</li>
-                                            <li>Career Counselling & Educational Guidance</li>
-                                            <li>Life Skills & Personal Growth</li>
-                                            <li>Teacher/Faculty Development</li>
-                                            <li>Parenting & Family Counselling</li>
-                                            <li>Leadership & Team Building</li>
-                                            <li>Youth Empowerment Initiatives</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="achievement-card">
-                                    <div class="achievement-icon">
-                                        <i class="fas fa-university"></i>
-                                    </div>
-                                    <div class="achievement-content">
-                                        <h4>Counselling Consultant & Career Faculty</h4>
-                                        <ul>
-                                            <li>MG University</li>
-                                            <li>Amrita University</li>
-                                            <li>Oxford Publications</li>
-                                            <li>Macmillan Education</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="achievement-card">
-                                    <div class="achievement-icon">
-                                        <i class="fas fa-chalkboard-teacher"></i>
-                                    </div>
-                                    <div class="achievement-content">
-                                        <h4>Training Faculty</h4>
-                                        <ul>
-                                            <li>KSEB – PETARC</li>
-                                            <li>NTPC</li>
-                                            <li>HBS Technopark, Thiruvananthapuram</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="achievement-card">
-                                    <div class="achievement-icon">
-                                        <i class="fas fa-bullhorn"></i>
-                                    </div>
-                                    <div class="achievement-content">
-                                        <h4>Management & Marketing Skills Trainer</h4>
-                                        <ul>
-                                            <li>Banking</li>
-                                            <li>Insurance</li>
-                                            <li>Retail</li>
-                                            <li>Healthcare</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="achievement-card">
-                                    <div class="achievement-icon">
-                                        <i class="fas fa-graduation-cap"></i>
-                                    </div>
-                                    <div class="achievement-content">
-                                        <h4>Leadership & Youth Training</h4>
-                                        <ul>
-                                            <li>Leadership Trainer, Rotary International (RYLA)</li>
-                                            <li>Youth Training Consultant, National YMCA</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="achievement-card">
-                                    <div class="achievement-icon">
-                                        <i class="fas fa-gavel"></i>
-                                    </div>
-                                    <div class="achievement-content">
-                                        <h4>Consultant Trainer</h4>
-                                        <ul>
-                                            <li>AICTE</li>
-                                            <li>Labour</li>
-                                            <li>Employment</li>
-                                            <li>Collegiate Education</li>
-                                            <li>Higher Secondary Directorate</li>
-                                            <li>Youth Affairs</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="achievement-card bio-card">
-                                    <div class="achievement-icon">
-                                        <i class="fas fa-heart"></i>
-                                    </div>
-                                    <div class="achievement-content">
-                                        <p class="bio">With over 26 years of experience in Human Resource Development, Career Counselling, and Life Skills Training, Mr. Sunil D Kurivilla has successfully facilitated over 4200 programs, empowering thousands of individuals to reach their full potential.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Collapse all achievement panels and set chevrons down
+  const panels = document.querySelectorAll('#founder-achievements .achievement-panel');
+  const toggles = document.querySelectorAll('#founder-achievements .achievement-toggle i');
+  panels.forEach(panel => panel.style.display = 'none');
+  toggles.forEach(chevron => {
+    chevron.classList.remove('fa-chevron-up');
+    chevron.classList.add('fa-chevron-down');
+  });
+});
+
+function toggleFounderDetails() {
+  const details = document.getElementById('founder-details');
+  const text = document.getElementById('dropdown-text');
+  const icon = document.getElementById('dropdown-icon');
+  if (details.style.display === 'none') {
+    details.style.display = 'block';
+    text.textContent = 'Hide Details';
+    icon.classList.remove('fa-chevron-down');
+    icon.classList.add('fa-chevron-up');
+  } else {
+    details.style.display = 'none';
+    text.textContent = 'Show Details';
+    icon.classList.remove('fa-chevron-up');
+    icon.classList.add('fa-chevron-down');
+  }
+}
+
+function toggleAchievement(event, idx) {
+    const panels = document.querySelectorAll('#founder-achievements .achievement-panel');
+    const toggles = document.querySelectorAll('#founder-achievements .achievement-toggle');
+    for (let i = 0; i < panels.length; i++) {
+        if (i === idx) {
+            const isOpen = panels[i].style.display === 'block';
+            // Close all panels first with animation
+            panels.forEach((panel, j) => {
+                if (panel.style.display === 'block') {
+                    panel.classList.add('collapsing');
+                    setTimeout(() => {
+                        panel.style.display = 'none';
+                        panel.classList.remove('collapsing');
+                    }, 350);
+                } else {
+                    panel.style.display = 'none';
+                    panel.classList.remove('collapsing');
+                }
+            });
+            toggles.forEach(toggle => {
+                toggle.querySelector('i').classList.add('fa-chevron-down');
+                toggle.querySelector('i').classList.remove('fa-chevron-up');
+            });
+            // Open the clicked one if it was not already open
+            if (!isOpen) {
+                panels[i].style.display = 'block';
+                panels[i].classList.remove('collapsing');
+                toggles[i].querySelector('i').classList.remove('fa-chevron-down');
+                toggles[i].querySelector('i').classList.add('fa-chevron-up');
+            }
+        }
+    }
+}
+
+</script>
                 </div>
             </div>
         </section>
