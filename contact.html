@@ -14,7 +14,8 @@
         <a href="index.html" class="logo">Insight Mission</a>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="about.html">About</a>
+            <a href="about.html">About Us</a>
+            <a href="founder.html">Our Founder</a>
             <a href="classes.html">Classes</a>
             <a href="gallery.html">Gallery</a>
             <a href="contact.html">Contact</a>
@@ -32,15 +33,15 @@
                     <h2>Get in Touch</h2>
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <p>INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</p>
+                        <p onclick="window.open('https://maps.app.goo.gl/upsBj7XH281K8nv1A', '_blank')" style="cursor: pointer;">INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</p>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-phone"></i>
-                        <p>+91 1234567890</p>
+                        <p>+91 96561 44712<br><br> +91 98474 00712</p>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-envelope"></i>
-                        <p>info@insightmission.org</p>
+                        <p>insightmission@gmail.com <br><br> sunil_kuruvilla@rediffmail.com</p>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-clock"></i>
@@ -58,6 +59,10 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number</label>
+                            <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" title="Please enter a 10-digit mobile number" placeholder="Enter 10-digit mobile number">
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
@@ -105,15 +110,15 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</span>
+                        <span onclick="window.open('https://maps.app.goo.gl/upsBj7XH281K8nv1A', '_blank')" style="cursor: pointer;">INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>+91 1234567890</span>
+                        <span>+91 96561 44712, +91 98474 00712</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
-                        <span>info@insightmission.org</span>
+                        <span>sunil_kuruvilla@rediffmail.com | insightmission@gmail.com</span>
                     </div>
                 </div>
             </div>
@@ -123,6 +128,92 @@
         </div>
     </footer>
 
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Message Sent Successfully!</h2>
+            <p>Thank you for your message. We will get back to you soon.</p>
+            <button class="modal-close-btn">Close</button>
+        </div>
+    </div>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: slideIn 0.5s ease;
+        }
+
+        .modal-icon {
+            color: #4CAF50;
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .modal-close-btn {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-close-btn:hover {
+            background-color: #3b82f6;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         // Initialize EmailJS with your public key
@@ -130,12 +221,50 @@
             emailjs.init("_zISxii1tkO00RSi5");
         })();
 
-        // Navbar Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        // Hamburger Menu Toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Dropdown Toggle
+        document.querySelector('.dropdown-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            const dropdownMenu = this.nextElementSibling;
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.dropdown');
+            const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+
+            if (!dropdown.contains(event.target)) {
+                dropdownToggle.classList.remove('active');
+                dropdownMenu.classList.remove('show');
+            }
+        });
+
+        // Pre-fill message with course name if available
+        document.addEventListener('DOMContentLoaded', () => {
+            const courseName = localStorage.getItem('selectedCourseName');
+            const messageTextarea = document.getElementById('message');
+            
+            if (courseName) {
+                messageTextarea.value = `Hi, I would like to contact for the "${courseName}" course. `;
+                // Optional: Clear the stored course name after pre-filling
+                localStorage.removeItem('selectedCourseName');
+            }
         });
 
         // Form Validation and Submission
@@ -147,11 +276,18 @@
             // Get form values
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
             const message = document.getElementById('message').value;
 
             // Simple validation
             if (!name || !email || !message) {
-                alert('Please fill in all fields');
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Mobile number validation (optional)
+            if (mobile && !/^[0-9]{10}$/.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number');
                 return;
             }
 
@@ -170,15 +306,16 @@
                     user_name: name,
                     user_email: email,
                     user_message: `
-                        Name: ${name}\n
-                        Email: ${email}\n
+                        Name: ${name}
+                        Email: ${email}
+                        Mobile: ${mobile || 'Not provided'}
                         Message: ${message}
                     `
                 }
             ).then(
                 function(response) {
                     console.log('SUCCESS!', response.status, response.text);
-                    alert('Thank you for your message! We will get back to you soon.');
+                    showConfirmationModal();
                     contactForm.reset();
                 },
                 function(error) {
@@ -187,7 +324,67 @@
                     alert('Sorry, there was an error sending your message. Please check the console for details.');
                 }
             );
+
+        // Function to show confirmation modal
+        function showConfirmationModal() {
+            const modal = document.getElementById('confirmationModal');
+            modal.style.display = 'flex';
+
+            const closeBtn = modal.querySelector('.close-btn');
+            const modalCloseBtn = modal.querySelector('.modal-close-btn');
+
+            function closeModal() {
+                modal.style.display = 'none';
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            modalCloseBtn.addEventListener('click', closeModal);
+
+            // Close modal if clicked outside
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+        }
         });
+
+        // Dropdown toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            dropdownToggle.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent event from bubbling
+                dropdownMenu.classList.toggle('show');
+                dropdownToggle.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.classList.remove('show');
+                    dropdownToggle.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+                });
+            } else {
+                console.error('Dropdown elements not found');
+            }
+        });
+    </script>
+</body>
+</html>
+
+        } else {
+            initDropdown();
+        }
     </script>
 </body>
 </html>

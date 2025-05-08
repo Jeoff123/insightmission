@@ -14,7 +14,8 @@
         <a href="index.html" class="logo">Insight Mission</a>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="about.html">About</a>
+            <a href="about.html">About Us</a>
+            <a href="founder.html">Our Founder</a>
             <a href="classes.html">Classes</a>
             <a href="gallery.html">Gallery</a>
             <a href="contact.html">Contact</a>
@@ -23,6 +24,27 @@
             <i class="fas fa-bars"></i>
         </div>
     </nav>
+
+    <script>
+        // Dropdown toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            dropdownToggle.addEventListener('click', function() {
+                dropdownMenu.classList.toggle('show');
+                dropdownToggle.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.classList.remove('show');
+                    dropdownToggle.classList.remove('active');
+                }
+            });
+        });
+    </script>
 
     <div class="main-content">
         <!-- Mission & Vision Section -->
@@ -60,189 +82,10 @@
         <!-- Values Section -->
         
 
-        <!-- Team Section -->
-        <section class="team-section">
-            <div class="section-container">
-                <div class="section-title">
-                    <h2>Our Founder</h2>
-                    <p>Meet the founder of the Insight Mission</p>
-                </div>
-                <div class="team-grid">
-                    <div class="team-member compact-founder" id="sunil-profile">
-  <div class="compact-header">
-    <div class="profile-image small">
-      <img src="Gallery/42.jpeg" alt="Mr. Sunil D Kurivilla">
-    </div>
-    <div class="compact-info">
-      <h3>Mr. Sunil D Kurivilla</h3>
-      <p class="role">Founder & CEO</p>
-      <button class="dropdown-toggle" onclick="toggleFounderDetails()">
-        <span id="dropdown-text">Show Details</span>
-        <i class="fas fa-chevron-down" id="dropdown-icon"></i>
-      </button>
-    </div>
-  </div>
-  <div class="founder-details" id="founder-details" style="display:none;">
-    <div class="profile-achievements" id="founder-achievements">
-<!-- Areas of Expertise Accordion Card -->
-<div class="achievement-card">
-    <button class="achievement-toggle" onclick="toggleAchievement(event, 0)">
-        <span>Areas of Expertise</span>
-        <i class="fas fa-chevron-down"></i>
-    </button>
-    <div class="achievement-panel" style="display:none;">
-        <div class="achievement-icon">
-            <i class="fas fa-lightbulb"></i>
-        </div>
-        <div class="achievement-content">
-            <ul>
-                <li>Human Resource Development (HRD)</li>
-                <li>Career Counselling & Educational Guidance</li>
-                <li>Life Skills & Personal Growth</li>
-                <li>Teacher/Faculty Development</li>
-                <li>Parenting & Family Counselling</li>
-                <li>Leadership & Team Building</li>
-                <li>Youth Empowerment Initiatives</li>
-                <li>Counselling Consultant & Career Faculty</li>
-                <li>MG University</li>
-                <li>Amrita University</li>
-                <li>Oxford Publications</li>
-                <li>Macmillan Education</li>
-                <li>Training Faculty</li>
-                <li>KSEB – PETARC</li>
-                <li>NTPC</li>
-                <li>HBS Technopark, Thiruvananthapuram</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!-- End Areas of Expertise -->
-<div class="achievement-card">
-    <button class="achievement-toggle" onclick="toggleAchievement(event, 1)">
-        <span>Qualifications</span>
-        <i class="fas fa-chevron-down"></i>
-    </button>
-    <div class="achievement-panel" style="display:none;">
-        <div class="achievement-icon">
-            <i class="fas fa-graduation-cap"></i>
-        </div>
-        <div class="achievement-content">
-            <ul>
-                <li>MBA, M.Sc (Applied Psychology)</li>
-                <li>Certified HR Trainer</li>
-                <li>Certified Counsellor</li>
-                <li>Researcher in Social Psychology</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="achievement-card">
-    <button class="achievement-toggle" onclick="toggleAchievement(event, 2)">
-        <span>Professional Roles & Associations</span>
-        <i class="fas fa-chevron-down"></i>
-    </button>
-    <div class="achievement-panel" style="display:none;">
-        <div class="achievement-icon">
-            <i class="fas fa-briefcase"></i>
-        </div>
-        <div class="achievement-content">
-            <ul>
-                <li>Founder, Insight Mission, Kerala</li>
-                <li>Co-Founder, Astra-HR, Thiruvananthapuram</li>
-                <li>Chief Career Mentor, Bhaavi Career Consultants, Kochi</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="achievement-card">
-    <button class="achievement-toggle" onclick="toggleAchievement(event, 3)">
-        <span>Other Achievements</span>
-        <i class="fas fa-chevron-down"></i>
-    </button>
-    <div class="achievement-panel" style="display:none;">
-        <div class="achievement-icon">
-            <i class="fas fa-trophy"></i>
-        </div>
-        <div class="achievement-content">
-  <div class="achievement-row">
-    <div class="achievement-title"><strong>Leadership & Youth Training</strong></div>
-    <div class="achievement-points">
-      <ul>
-        <li>Leadership Trainer, Rotary International (RYLA)</li>
-        <li>Youth Training Consultant, National YMCA</li>
-      </ul>
-    </div>
-  </div>
-  <hr class="achievement-separator">
-  <div class="achievement-row">
-    <div class="achievement-title"><strong>Consultant Trainer</strong></div>
-    <div class="achievement-points">
-      <ul>
-        <li>AICTE</li>
-        <li>Labour</li>
-        <li>Employment</li>
-        <li>Collegiate Education</li>
-        <li>Higher Secondary Directorate</li>
-        <li>Youth Affairs</li>
-      </ul>
-    </div>
-  </div>
-  <hr class="achievement-separator">
-  <div class="achievement-row">
-    <div class="achievement-title"><strong>Counselling Consultant & Career Faculty</strong></div>
-    <div class="achievement-points">
-      <ul>
-        <li>MG University</li>
-        <li>Amrita University</li>
-        <li>Oxford Publications</li>
-        <li>Macmillan Education</li>
-      </ul>
-    </div>
-  </div>
-  <hr class="achievement-separator">
-  <div class="achievement-row">
-    <div class="achievement-title"><strong>Training Faculty</strong></div>
-    <div class="achievement-points">
-      <ul>
-        <li>KSEB – PETARC</li>
-        <li>NTPC</li>
-        <li>HBS Technopark, Thiruvananthapuram</li>
-      </ul>
-    </div>
-  </div>
-  <hr class="achievement-separator">
-  <div class="achievement-row">
-    <div class="achievement-title"><strong>Management & Marketing Skills Trainer</strong></div>
-    <div class="achievement-points">
-      <ul>
-        <li>Banking</li>
-        <li>Insurance</li>
-        <li>Retail</li>
-        <li>Healthcare</li>
-      </ul>
-    </div>
-  </div>
-  <hr class="achievement-separator">
-            
-        </div>
-    </div>
-</div>
-<!-- End Other Achievements -->
+        
 
                                 
-     </div>
-                        </div>
-                        <div class="founder-description-wrapper">
-                            <p class="founder-description">
-                                With over 26 years of experience in Human Resource Development, Career Counselling, and Life Skills Training, Mr. Sunil D Kurivilla has successfully facilitated over 4200 programs, empowering thousands of individuals to reach their full potential.
-                            </p>
-                            <div class="social-links compact">
-                                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
+     
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   // Collapse all achievement panels and set chevrons down
@@ -311,6 +154,38 @@ function toggleAchievement(event, idx) {
             </div>
         </section>
 
+
+        <section class="values-section">
+            <div class="section-container">
+                <div class="section-title">
+                    <h2>Our Core Values</h2>
+                    <p>The principles that guide our work and define our culture</p>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Empathy</h3>
+                        <p>Understanding and addressing the unique needs of each individual</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Innovation</h3>
+                        <p>Continuously evolving our methods to deliver better results</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Integrity</h3>
+                        <p>Maintaining the highest standards of honesty and professionalism</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Community</h3>
+                        <p>Building a supportive network of learners and mentors</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Timeline Section -->
         <section class="timeline-section">
             <div class="section-container">
@@ -322,79 +197,50 @@ function toggleAchievement(event, idx) {
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <h3>Foundation</h3>
-                            <p class="date">2010</p>
-                            <p>Insight Mission was founded with a vision to transform education and career guidance in the community.</p>
+                            <p class="date">1998</p>
+                            <p>Insight Mission was founded in Mavelikara, Kerala, by Sunil D. Kuruvilla—an acclaimed trainer and educator—laying the foundation for a transformative Human Resource Development initiative.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-content">
-                            <h3>First Workshop</h3>
-                            <p class="date">2012</p>
-                            <p>Conducted our first career guidance workshop, reaching over 100 students.</p>
+                            <h3>Early Outreach</h3>
+                            <p class="date">2000</p>
+                            <p>Began conducting career guidance and life enrichment sessions in schools and colleges, reaching hundreds of students across Kerala.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-content">
-                            <h3>Expansion</h3>
-                            <p class="date">2015</p>
-                            <p>Expanded our services to include life skills training and personal development programs.</p>
+                            <h3>Growth & Recognition</h3>
+                            <p class="date">2008</p>
+                            <p>Expanded reach across the state with increasing demand for Insight Mission’s unique and practical approach to youth empowerment.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-content">
-                            <h3>Mentorship Program</h3>
-                            <p class="date">2018</p>
-                            <p>Launched our flagship mentorship program, connecting students with industry professionals.</p>
+                            <h3>Milestone Achieved</h3>
+                            <p class="date">2014</p>
+                            <p>Surpassed 2,000 training sessions, marking a significant milestone in building life skills, values, and career clarity among young people.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-content">
-                            <h3>Digital Transformation</h3>
+                            <h3>Adapting to Change</h3>
                             <p class="date">2020</p>
-                            <p>Adapted to the digital age by offering online courses and virtual mentoring sessions.</p>
+                            <p>Transitioned to digital platforms during the pandemic, offering online mentoring, webinars, and virtual workshops to stay connected with youth.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <h3>Present Day</h3>
-                            <p class="date">2024</p>
-                            <p>Continuing to inspire and transform lives through our comprehensive programs and initiatives.</p>
+                            <p class="date">2025</p>
+                            <p>With over 26 years of service and more than 4,200 impactful sessions, Insight Mission continues to inspire and empower youth across Kerala and beyond.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-    <section class="values-section">
-        <div class="section-container">
-            <div class="section-title">
-                <h2>Our Core Values</h2>
-                <p>The principles that guide our work and define our culture</p>
-            </div>
-            <div class="values-grid">
-                <div class="value-card">
-                    <i class="fas fa-heart"></i>
-                    <h3>Empathy</h3>
-                    <p>Understanding and addressing the unique needs of each individual</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-lightbulb"></i>
-                    <h3>Innovation</h3>
-                    <p>Continuously evolving our methods to deliver better results</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-handshake"></i>
-                    <h3>Integrity</h3>
-                    <p>Maintaining the highest standards of honesty and professionalism</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-users"></i>
-                    <h3>Community</h3>
-                    <p>Building a supportive network of learners and mentors</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- Footer -->
     <footer>
@@ -424,15 +270,15 @@ function toggleAchievement(event, idx) {
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</span>
+                        <span onclick="window.open('https://maps.app.goo.gl/upsBj7XH281K8nv1A', '_blank')" style="cursor: pointer;">INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>+1 (123) 456-7890</span>
+                        <span>+91 96561 44712, +91 98474 00712</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
-                        <span>info@insightmission.org</span>
+                        <span>sunil_kuruvilla@rediffmail.com | insightmission@gmail.com</span>
                     </div>
                 </div>
             </div>

@@ -106,6 +106,61 @@ body {
     width: 100%;
 }
 
+/* Dropdown Hover Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--card-bg);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    min-width: 200px;
+    z-index: 1000;
+    margin-top: 0.5rem;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+    border-bottom: 1px solid var(--light-bg);
+}
+
+.dropdown-menu a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+    background: var(--light-bg);
+    color: var(--primary-color);
+}
+
+/* Dropdown Styles are now in the previous section */
+
 .hamburger {
     display: none;
     cursor: pointer;
@@ -956,7 +1011,23 @@ body {
     }
 
     .nav-links {
-        display: none;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--card-bg);
+        z-index: 1000;
+        padding: 4rem 2rem;
+        transition: left 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+    }
+
+    .nav-links.active {
+        left: 0;
     }
 
     .hamburger {
@@ -1611,17 +1682,22 @@ footer::before {
 @media screen and (max-width: 768px) {
     .hamburger {
         display: block;
+        cursor: pointer;
+        z-index: 1001;
     }
 
     .nav-links {
         position: fixed;
         top: 0;
-        right: -100%;
-        width: 80%;
+        left: -100%;
+        width: 100%;
         height: 100vh;
-        background: white;
+        background: var(--card-bg);
         flex-direction: column;
+        justify-content: center;
         align-items: center;
+        transition: left 0.3s ease;
+        z-index: 1000;
         padding: 2rem;
         transition: right 0.3s ease;
         box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);

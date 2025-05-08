@@ -17,7 +17,8 @@
         <a href="index.html" class="logo">Insight Mission</a>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="about.html">About</a>
+            <a href="about.html">About Us</a>
+            <a href="founder.html">Our Founder</a>
             <a href="classes.html">Classes</a>
             <a href="gallery.html">Gallery</a>
             <a href="contact.html">Contact</a>
@@ -41,7 +42,71 @@
         <!-- Classes Grid -->
         <section class="classes-section">
             <div class="classes-grid">
-                <!-- Dynamic content will be loaded from Supabase -->
+                <div class="class-card" data-category="life">
+                    <img src="Gallery/21.jpeg" alt="ROOTS & WINGS Program">
+                    <div class="class-content">
+                        <h3 class="class-title">ROOTS & WINGS - Teen Personality & Life Skill Development</h3>
+                        <p class="class-description">A transformative program designed to inspire teenagers by enhancing self-awareness, emotional intelligence, study habits, career development skills, digital citizenship, and life leadership.</p>
+                        <div class="class-details">
+                            <a href="contact.html" class="register-btn" onclick="storeCourseDetails('ROOTS & WINGS - Teen Personality & Life Skill Development')">
+                                <i class="fas fa-calendar-alt"></i>
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="class-card" data-category="life">
+                    <img src="Gallery/76.jpeg" alt="SHE-POWER Program">
+                    <div class="class-content">
+                        <h3 class="class-title">SHE-POWER - Empowerment Program for Teen Girls</h3>
+                        <p class="class-description">A confidence-building initiative empowering young girls to build self-assertiveness, strengthen resilience, enhance social awareness, and cultivate leadership skills.</p>
+                        <div class="class-details">
+                            <a href="contact.html" class="register-btn" onclick="storeCourseDetails('SHE-POWER - Empowerment Program for Teen Girls')">
+                                <i class="fas fa-calendar-alt"></i>
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="class-card" data-category="career">
+                    <img src="Gallery/33.jpeg" alt="Career Guidance Program">
+                    <div class="class-content">
+                        <h3 class="class-title">Career Guidance with Parents</h3>
+                        <p class="class-description">Thoughtfully designed sessions to help students understand their unique strengths, make informed career decisions, and build confidence for future pathways.</p>
+                        <div class="class-details">
+                            <a href="contact.html" class="register-btn" onclick="storeCourseDetails('Career Guidance with Parents')">
+                                <i class="fas fa-calendar-alt"></i>
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="class-card" data-category="mentoring">
+                    <img src="Gallery/61.jpeg" alt="Parenting Guidance Program">
+                    <div class="class-content">
+                        <h3 class="class-title">Parenting Guidance Program - Happy Parent. Happy Child.</h3>
+                        <p class="class-description">Age-specific parenting sessions that equip parents to support their children through various developmental stages, from early childhood to senior students.</p>
+                        <div class="class-details">
+                            <a href="contact.html" class="register-btn" onclick="storeCourseDetails('Parenting Guidance Program - Happy Parent. Happy Child.')">
+                                <i class="fas fa-calendar-alt"></i>
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="class-card" data-category="mentoring">
+                    <img src="Gallery/31.jpeg" alt="Teachers Development Program">
+                    <div class="class-content">
+                        <h3 class="class-title">Teachers Development Program - Train Your Teachers. Transform Your School</h3>
+                        <p class="class-description">Empowering educators through dynamic workshops focusing on emotional intelligence, classroom effectiveness, and personal-professional development.</p>
+                        <div class="class-details">
+                            <a href="contact.html" class="register-btn" onclick="storeCourseDetails('Teachers Development Program - Train Your Teachers. Transform Your School')">
+                                <i class="fas fa-calendar-alt"></i>
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
@@ -74,25 +139,59 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</span>
+                        <span onclick="window.open('https://maps.app.goo.gl/upsBj7XH281K8nv1A', '_blank')" style="cursor: pointer;">INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>+1 234 567 890</span>
+                        <span>+91 96561 44712, +91 98474 00712</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
-                        <span>info@educationschool.com</span>
+                        <span>sunil_kuruvilla@rediffmail.com | insightmission@gmail.com</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Education School. All rights reserved.</p>
+            <p>&copy; 2025 Insight Mission. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger Menu Toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Dropdown Toggle
+        document.querySelector('.dropdown-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            const dropdownMenu = this.nextElementSibling;
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.dropdown');
+            const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+
+            if (!dropdown.contains(event.target)) {
+                dropdownToggle.classList.remove('active');
+                dropdownMenu.classList.remove('show');
+            }
+        });
+
         // Navbar Toggle
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
@@ -129,7 +228,7 @@
                 });
             });
         });
-
+        
         // Initial animation
         classCards.forEach(card => {
             setTimeout(() => {
@@ -138,28 +237,28 @@
         });
 
         // Function to store course details in localStorage
-        window.storeCourseDetails = function(title, date, time, fee) {
-            const courseDetails = {
-                title: title,
-                date: date,
-                time: time,
-                fee: fee
-            };
-            localStorage.setItem('courseDetails', JSON.stringify(courseDetails));
+        window.storeCourseDetails = function(title) {
+            localStorage.setItem('selectedCourseName', title);
         };
 
-        // Register button click handler
-        const registerBtns = document.querySelectorAll('.register-btn');
-        registerBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const card = btn.closest('.class-card');
-                const title = card.querySelector('.class-title').textContent;
-                const date = card.querySelector('.class-date').textContent;
-                const time = card.querySelector('.class-time').textContent;
-                const fee = card.querySelector('.class-fee').textContent.replace('₹', '').trim();
-                
-                storeCourseDetails(title, date, time, fee);
-                window.location.href = 'register.html';
+        // Note: Register button click handler removed as it's now handled inline
+
+         // Dropdown toggle functionality
+         document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            dropdownToggle.addEventListener('click', function() {
+                dropdownMenu.classList.toggle('show');
+                dropdownToggle.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.classList.remove('show');
+                    dropdownToggle.classList.remove('active');
+                }
             });
         });
     </script>
