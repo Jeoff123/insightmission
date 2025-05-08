@@ -1,4 +1,4 @@
-// Supabase configuration
+/* Supabase configuration
 const SUPABASE_URL = 'https://zaziwufifcxyzdreggeb.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpheml3dWZpZmN4eXpkcmVnZ2ViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0NTU3NjMsImV4cCI6MjA2MDAzMTc2M30.-m8MOkwfda5V0eEMQb2c-YZ_lHQ6oV3Etoh98LvSU8s';
 
@@ -254,3 +254,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+*/
