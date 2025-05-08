@@ -254,12 +254,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Test connection when ready
-    window.supabaseClientReady.then(() => {
-        console.log('Supabase client initialized');
-        testSupabaseConnection().catch(error => {
-            console.error('Initial test failed:', error);
-            alert('Failed to connect to Supabase. Please check your network connection and try again.');
-        });
-    });
-});
