@@ -15,7 +15,7 @@
         <a href="index.html" class="logo">Insight Mission</a>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="about.html">About</a>
+            <a href="about.html">About Us</a>
             <a href="founder.html">Our Founder</a>
             <a href="classes.html">Classes</a>
             <a href="gallery.html">Gallery</a>
@@ -149,25 +149,65 @@
         });
 
         // Hamburger Menu Toggle
-        document.querySelector('.hamburger').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', function(event) {
+                event.stopPropagation();
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked
+            const links = navLinks.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!navLinks.contains(event.target) && !hamburger.contains(event.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
         });
-         // Dropdown toggle functionality
+
+         // Mobile Navigation Toggle
          document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
             const dropdownToggle = document.querySelector('.dropdown-toggle');
             const dropdownMenu = document.querySelector('.dropdown-menu');
 
-            dropdownToggle.addEventListener('click', function() {
-                dropdownMenu.classList.toggle('show');
-                dropdownToggle.classList.toggle('active');
+            // Hamburger menu toggle
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                this.classList.toggle('active');
             });
 
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.remove('show');
-                    dropdownToggle.classList.remove('active');
-                }
+            // Dropdown toggle in mobile view
+            if (dropdownToggle && dropdownMenu) {
+                dropdownToggle.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    dropdownMenu.classList.toggle('show');
+                    this.classList.toggle('active');
+                });
+            }
+
+            // Close mobile menu when a link is clicked
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                    
+                    // Close dropdown if open
+                    if (dropdownMenu) {
+                        dropdownMenu.classList.remove('show');
+                        dropdownToggle.classList.remove('active');
+                    }
+                });
             });
         });
     </script>
