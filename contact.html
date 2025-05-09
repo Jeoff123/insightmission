@@ -29,26 +29,6 @@
         <!-- Contact Section -->
         <section class="contact-section">
             <div class="contact-container">
-                <div class="contact-info">
-                    <h2>Get in Touch</h2>
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p onclick="window.open('https://maps.app.goo.gl/upsBj7XH281K8nv1A', '_blank')" style="cursor: pointer;">INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <p>+91 96561 44712<br><br> +91 98474 00712</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>insightmission@gmail.com <br><br> sunil_kuruvilla@rediffmail.com</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
-                    </div>
-                </div>
-
                 <div class="contact-form">
                     <h2>Send us a Message</h2>
                     <form id="contactForm">
@@ -70,6 +50,26 @@
                         </div>
                         <button type="submit" class="submit-btn">Send Message</button>
                     </form>
+                </div>
+
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p onclick="window.open('https://maps.app.goo.gl/upsBj7XH281K8nv1A', '_blank')" style="cursor: pointer;">INSIGHT MISSION - Personal Guidance & Life Enrichment Centre, Kerala, India</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+91 96561 44712<br><br> +91 98474 00712</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>insightmission@gmail.com <br><br> sunil_kuruvilla@rediffmail.com</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -222,169 +222,112 @@
         })();
 
         // Navbar Scroll Effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
 
         // Hamburger Menu Toggle
-        document.querySelector('.hamburger').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+        }
 
-        // Dropdown Toggle
-        document.querySelector('.dropdown-toggle').addEventListener('click', function() {
-            this.classList.toggle('active');
-            const dropdownMenu = this.nextElementSibling;
-            dropdownMenu.classList.toggle('show');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-            const dropdown = document.querySelector('.dropdown');
-            const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
-            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-
-            if (!dropdown.contains(event.target)) {
-                dropdownToggle.classList.remove('active');
-                dropdownMenu.classList.remove('show');
-            }
-        });
+        // Removed unnecessary dropdown toggle code
 
         // Pre-fill message with course name if available
         document.addEventListener('DOMContentLoaded', () => {
-            const courseName = localStorage.getItem('selectedCourseName');
-            const messageTextarea = document.getElementById('message');
-            
-            if (courseName) {
-                messageTextarea.value = `Hi, I would like to contact for the "${courseName}" course. `;
-                // Optional: Clear the stored course name after pre-filling
-                localStorage.removeItem('selectedCourseName');
-            }
-        });
+            // Form Validation and Submission
+            const contactForm = document.getElementById('contactForm');
 
-        // Form Validation and Submission
-        const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
 
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const mobile = document.getElementById('mobile').value;
+                const message = document.getElementById('message').value;
 
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const mobile = document.getElementById('mobile').value;
-            const message = document.getElementById('message').value;
-
-            // Simple validation
-            if (!name || !email || !message) {
-                alert('Please fill in all required fields');
-                return;
-            }
-
-            // Mobile number validation (optional)
-            if (mobile && !/^[0-9]{10}$/.test(mobile)) {
-                alert('Please enter a valid 10-digit mobile number');
-                return;
-            }
-
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address');
-                return;
-            }
-
-            // Send email using EmailJS
-            emailjs.send(
-                "service_l3m5tjb", // Your EmailJS service ID
-                "template_1jr2hpm", // Your EmailJS template ID
-                {
-                    user_name: name,
-                    user_email: email,
-                    user_message: `
-                        Name: ${name}
-                        Email: ${email}
-                        Mobile: ${mobile || 'Not provided'}
-                        Message: ${message}
-                    `
+                // Simple validation
+                if (!name || !email || !message) {
+                    alert('Please fill in all required fields');
+                    return;
                 }
-            ).then(
-                function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    showConfirmationModal();
-                    contactForm.reset();
-                },
-                function(error) {
-                    console.error('EmailJS Error:', error);
-                    console.error('Error Text:', error.text);
-                    alert('Sorry, there was an error sending your message. Please check the console for details.');
+
+                // Mobile number validation (optional)
+                if (mobile && !/^[0-9]{10}$/.test(mobile)) {
+                    alert('Please enter a valid 10-digit mobile number');
+                    return;
                 }
-            );
 
-        // Function to show confirmation modal
-        function showConfirmationModal() {
-            const modal = document.getElementById('confirmationModal');
-            modal.style.display = 'flex';
-
-            const closeBtn = modal.querySelector('.close-btn');
-            const modalCloseBtn = modal.querySelector('.modal-close-btn');
-
-            function closeModal() {
-                modal.style.display = 'none';
-            }
-
-            closeBtn.addEventListener('click', closeModal);
-            modalCloseBtn.addEventListener('click', closeModal);
-
-            // Close modal if clicked outside
-            modal.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    closeModal();
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address');
+                    return;
                 }
-            });
-        }
-        });
 
-        // Dropdown toggle functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownToggle = document.querySelector('.dropdown-toggle');
-            const dropdownMenu = document.querySelector('.dropdown-menu');
-
-            dropdownToggle.addEventListener('click', function(event) {
-                event.stopPropagation(); // Prevent event from bubbling
-                dropdownMenu.classList.toggle('show');
-                dropdownToggle.classList.toggle('active');
+                // Send email using EmailJS
+                emailjs.send(
+                    "service_l3m5tjb", // Your EmailJS service ID
+                    "template_1jr2hpm", // Your EmailJS template ID
+                    {
+                        user_name: name,
+                        user_email: email,
+                        user_message: `
+                            Name: ${name}
+                            Email: ${email}
+                            Mobile: ${mobile || 'Not provided'}
+                            Message: ${message}
+                        `
+                    }
+                ).then(
+                    function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        showConfirmationModal();
+                        contactForm.reset();
+                    },
+                    function(error) {
+                        console.error('EmailJS Error:', error);
+                        console.error('Error Text:', error.text);
+                        alert('Sorry, there was an error sending your message. Please check the console for details.');
+                    }
+                );
             });
 
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.remove('show');
-                    dropdownToggle.classList.remove('active');
+            // Function to show confirmation modal
+            function showConfirmationModal() {
+                const modal = document.getElementById('confirmationModal');
+                modal.style.display = 'flex';
+
+                const closeBtn = modal.querySelector('.close-btn');
+                const modalCloseBtn = modal.querySelector('.modal-close-btn');
+
+                function closeModal() {
+                    modal.style.display = 'none';
                 }
-            });
-        });
-    </script>
-</body>
-</html>
 
+                closeBtn.addEventListener('click', closeModal);
+                modalCloseBtn.addEventListener('click', closeModal);
 
+                // Close modal if clicked outside
+                modal.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        closeModal();
+                    }
                 });
-            } else {
-                console.error('Dropdown elements not found');
             }
         });
-    </script>
-</body>
-</html>
-
-        } else {
-            initDropdown();
-        }
     </script>
 </body>
 </html>
