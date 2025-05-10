@@ -877,13 +877,16 @@
     <!-- PiP YouTube Video -->
     <div id="pip-video-container" class="pip-video-container">
         <div id="pip-video-wrapper" class="pip-video-wrapper">
-            <iframe id="pip-video" src="https://www.youtube.com/embed/Ns8TRbAnSKQ?autoplay=0&mute=1" title="Insight Mission Promo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="pip-video" src="https://www.youtube.com/embed/Ns8TRbAnSKQ?autoplay=1&mute=0&controls=0&start=0&enablejsapi=1" title="Insight Mission Promo" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
             <div class="pip-video-controls">
                 <button id="pip-toggle" class="pip-toggle-btn">
                     <i class="fas fa-expand"></i>
                 </button>
                 <button id="pip-close" class="pip-close-btn">
                     <i class="fas fa-times"></i>
+                </button>
+                <button id="pip-youtube-channel" class="pip-youtube-channel-btn" style="display: none;">
+                    <i class="fab fa-youtube"></i> Go to YouTube Channel
                 </button>
             </div>
         </div>
@@ -941,6 +944,29 @@
             background: rgba(0,0,0,0.7);
         }
 
+        .pip-youtube-channel-btn {
+            background: #FF0000;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 5px 10px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .pip-youtube-channel-btn:hover {
+            background: #CC0000;
+        }
+
+        .pip-youtube-channel-btn i {
+            font-size: 16px;
+        }
+
         /* PiP mode styles */
         .pip-mode {
             position: fixed;
@@ -965,6 +991,10 @@
             const pipVideo = document.getElementById('pip-video');
             const pipToggleBtn = document.getElementById('pip-toggle');
             const pipCloseBtn = document.getElementById('pip-close');
+            const pipYouTubeChannelBtn = document.getElementById('pip-youtube-channel');
+
+            // Ensure video starts automatically
+            pipVideo.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
 
             // Toggle Picture-in-Picture
             pipToggleBtn.addEventListener('click', () => {
@@ -980,7 +1010,13 @@
 
             // Close PiP video
             pipCloseBtn.addEventListener('click', () => {
+                // Stop the video and mute it
+                pipVideo.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
+                pipVideo.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
                 pipContainer.style.display = 'none';
+                
+                // Show restore button
+                restorePipBtn.style.display = 'block';
             });
 
             // Optional: Restore if closed accidentally
@@ -993,9 +1029,24 @@
             restorePipBtn.style.display = 'none';
 
             restorePipBtn.addEventListener('click', () => {
+                // Restore the video container
                 pipContainer.style.display = 'block';
                 restorePipBtn.style.display = 'none';
+                
+                // Resume the video and unmute
+                pipVideo.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                pipVideo.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
             });
+
+            // YouTube channel button functionality
+            pipYouTubeChannelBtn.addEventListener('click', () => {
+                window.open('https://www.youtube.com/@sunilkuruvilla', '_blank');
+            });
+
+            // Show YouTube channel button after 25 seconds
+            setTimeout(() => {
+                pipYouTubeChannelBtn.style.display = 'flex';
+            }, 25000);
 
             document.body.appendChild(restorePipBtn);
 
