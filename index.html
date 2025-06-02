@@ -888,17 +888,21 @@
     </footer>
 
     <!-- PiP YouTube Video -->
+    <!-- PiP Local Video -->
     <div id="pip-video-container" class="pip-video-container">
         <div id="pip-video-wrapper" class="pip-video-wrapper">
-            <iframe id="pip-video" src="https://www.youtube.com/embed/xSWYvDZGHag?si=zX686sllfnFO1XwO?autoplay=1&mute=0&controls=0&start=0&enablejsapi=1" title="Insight Mission Promo" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            <video id="pip-video" width="280" height="160" poster="images/image.png" style="border-radius: 10px; width: 100%; height: 160px;" autoplay muted>
+                <source src="Videos/intro.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
             <div class="pip-video-controls">
-                <button id="pip-toggle" class="pip-toggle-btn">
-                    <i class="fas fa-expand"></i>
+                <button id="pip-mute" class="pip-close-btn" title="Mute">
+                    <i id="pip-mute-icon" class="fas fa-volume-up"></i>
                 </button>
-                <button id="pip-close" class="pip-close-btn">
+                <button id="pip-close" class="pip-close-btn" title="Close PiP">
                     <i class="fas fa-times"></i>
                 </button>
-                <button id="pip-youtube-channel" class="pip-youtube-channel-btn" style="display: none;">
+                <button id="pip-youtube-channel" class="pip-youtube-channel-btn" style="display: none; margin-left: 8px;">
                     <i class="fab fa-youtube"></i> Go to YouTube Channel
                 </button>
             </div>
@@ -943,6 +947,43 @@
             color: white;
             border: none;
             border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .pip-youtube-channel-btn {
+            background: #ff0000;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 0 18px 0 10px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            gap: 8px;
+        }
+        .pip-youtube-channel-btn i.fab.fa-youtube {
+            font-size: 22px;
+            margin-right: 5px;
+        }
+        .pip-youtube-channel-btn:hover {
+            background: #d60000;
+        }
+        .pip-close-btn {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
             width: 30px;
             height: 30px;
             display: flex;
@@ -967,7 +1008,7 @@
             align-items: center;
             justify-content: center;
             gap: 5px;
-            font-size: 12px;
+            font-size: 10px;
             cursor: pointer;
             transition: background 0.3s ease;
         }
@@ -1000,39 +1041,42 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const pipYouTubeChannelBtn = document.getElementById('pip-youtube-channel');
             const pipContainer = document.getElementById('pip-video-container');
             const pipVideo = document.getElementById('pip-video');
-            const pipToggleBtn = document.getElementById('pip-toggle');
+            const pipMuteBtn = document.getElementById('pip-mute');
+            const pipMuteIcon = document.getElementById('pip-mute-icon');
             const pipCloseBtn = document.getElementById('pip-close');
-            const pipYouTubeChannelBtn = document.getElementById('pip-youtube-channel');
 
-            // Ensure video starts automatically
-            pipVideo.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            // Autoplay the video (required for some browsers to be muted)
+            pipVideo.play().catch(() => {});
 
-            // Toggle Picture-in-Picture
-            pipToggleBtn.addEventListener('click', () => {
-                if (document.pictureInPictureElement) {
-                    document.exitPictureInPicture();
-                } else if (document.pictureInPictureEnabled) {
-                    pipVideo.requestPictureInPicture()
-                        .catch(error => {
-                            console.error('Error entering PiP mode:', error);
-                        });
-                }
+            // Mute/Unmute functionality
+            pipMuteBtn.addEventListener('click', () => {
+                pipVideo.muted = !pipVideo.muted;
+                pipMuteIcon.className = pipVideo.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+                pipMuteBtn.title = pipVideo.muted ? 'Unmute' : 'Mute';
+            });
+            // Set initial icon state
+            pipMuteIcon.className = pipVideo.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+            pipMuteBtn.title = pipVideo.muted ? 'Unmute' : 'Mute';
+
+            // Show YouTube channel button after 6 seconds
+            setTimeout(() => {
+                pipYouTubeChannelBtn.style.display = 'flex';
+            }, 6000);
+            pipYouTubeChannelBtn.addEventListener('click', () => {
+                window.open('https://www.youtube.com/@sunilkuruvilla', '_blank');
             });
 
             // Close PiP video
             pipCloseBtn.addEventListener('click', () => {
-                // Stop the video and mute it
-                pipVideo.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
-                pipVideo.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
                 pipContainer.style.display = 'none';
-                
-                // Show restore button
                 restorePipBtn.style.display = 'block';
+                pipVideo.pause();
             });
 
-            // Optional: Restore if closed accidentally
+            // Restore PiP video
             const restorePipBtn = document.createElement('button');
             restorePipBtn.innerHTML = 'Restore Video';
             restorePipBtn.style.position = 'fixed';
@@ -1040,35 +1084,14 @@
             restorePipBtn.style.left = '10px';
             restorePipBtn.style.zIndex = '9999';
             restorePipBtn.style.display = 'none';
-
+            document.body.appendChild(restorePipBtn);
             restorePipBtn.addEventListener('click', () => {
-                // Restore the video container
                 pipContainer.style.display = 'block';
                 restorePipBtn.style.display = 'none';
-                
-                // Resume the video and unmute
-                pipVideo.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-                pipVideo.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
-            });
-
-            // YouTube channel button functionality
-            pipYouTubeChannelBtn.addEventListener('click', () => {
-                window.open('https://www.youtube.com/@sunilkuruvilla', '_blank');
-            });
-
-            // Show YouTube channel button after 25 seconds
-            setTimeout(() => {
-                pipYouTubeChannelBtn.style.display = 'flex';
-            }, 8000);
-
-            document.body.appendChild(restorePipBtn);
-
-            // Show restore button if video is closed
-            pipCloseBtn.addEventListener('click', () => {
-                restorePipBtn.style.display = 'block';
+                pipVideo.play();
             });
         });
-        // Function to initialize the page
+    
         async function initializePage() {
             try {
                 await loadClassData();
