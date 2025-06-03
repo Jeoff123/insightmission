@@ -26,7 +26,7 @@ body {
     background: var(--section-bg);
 }
 
-/* Navbar Styles */
+/* Navbar Styles 
 .navbar {
     position: fixed;
     top: 0;
@@ -59,7 +59,7 @@ body {
     gap: 0.5rem;
     position: relative;
 }
-
+*/
 .logo::before {
     content: '';
     width: 8px;
@@ -68,7 +68,7 @@ body {
     border-radius: 50%;
     display: inline-block;
 }
-
+/*
 .nav-links {
     display: flex;
     gap: 2rem;
@@ -106,7 +106,7 @@ body {
     width: 100%;
 }
 
-/* Dropdown Hover Styles */
+ 
 .dropdown {
     position: relative;
 }
@@ -159,7 +159,7 @@ body {
     color: var(--primary-color);
 }
 
-/* Dropdown Styles are now in the previous section */
+ Dropdown Styles are now in the previous section 
 
 .hamburger {
     display: none;
