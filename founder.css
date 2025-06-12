@@ -52,8 +52,20 @@ html {
 }
 
 /* Apply to sections */
-section, .founder-card, .details-section, .achievement-card {
+section, .founder-card, .details-section, .achievement-card, .compact-founder, .founder-details-expanded, .founder-bio {
     will-change: transform, opacity;
+}
+
+/* Fast animation for founder section */
+.no-animation {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.no-animation.animated {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Founder Section Styles */
