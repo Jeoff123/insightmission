@@ -263,5 +263,52 @@
             <p>&copy; 2025 Insight Mission. All rights reserved.</p>
         </div>
     </footer>
+    
+    <script>
+        // Scroll Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation class to all sections and cards
+            const animateElements = document.querySelectorAll('section, .founder-card, .details-section, .achievement-card, .compact-founder, .founder-details-expanded, .founder-bio');
+            
+            // Function to check if element is in viewport
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight * 0.9) &&
+                    rect.bottom >= (window.innerHeight * 0.1)
+                );
+            }
+            
+            // Function to handle scroll events
+            function handleScroll() {
+                animateElements.forEach((element, index) => {
+                    if (isInViewport(element)) {
+                        // Add staggered delay based on index
+                        setTimeout(() => {
+                            element.classList.add('animated');
+                        }, 80 * (index % 3));
+                    }
+                });
+            }
+            
+            // Initial setup
+            animateElements.forEach((element, index) => {
+                element.classList.add('animate-on-scroll');
+                
+                // Add staggered delay classes
+                const delayClass = `delay-${(index % 3) + 1}`;
+                element.classList.add(delayClass);
+            });
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', handleScroll);
+            
+            // Initial check on page load
+            handleScroll();
+            
+            // Check again after a short delay to catch any elements already in view
+            setTimeout(handleScroll, 200);
+        });
+    </script>
     </body>
 </html>
