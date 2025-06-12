@@ -1110,6 +1110,55 @@ This mission is led by a dedicated team under the guidance of <strong>Mr Sunil K
     </style>
 
     <script src="js/data.js"></script>
+    
+    <script>
+        // Simple scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation class to all sections
+            const sections = document.querySelectorAll('section');
+            
+            // Function to check if element is in viewport
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight * 0.9) &&
+                    rect.bottom >= (window.innerHeight * 0.1)
+                );
+            }
+
+            
+            // Function to handle scroll events
+            function handleScroll() {
+                sections.forEach((section, index) => {
+                    if (isInViewport(section)) {
+                        // Add staggered delay based on index with more delay
+                        setTimeout(() => {
+                            section.classList.add('animated');
+                        }, 200 * (index % 4)); // Increased delay and added more stagger
+                    }
+                });
+            }
+            
+            // Initial check
+            sections.forEach(section => {
+                section.classList.add('animate-on-scroll');
+                
+                // Add staggered delay classes
+                const index = Array.from(sections).indexOf(section);
+                if (index % 3 === 1) section.classList.add('delay-1');
+                if (index % 3 === 2) section.classList.add('delay-2');
+            });
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', handleScroll);
+            
+            // Initial check on page load
+            handleScroll();
+            
+            // Check again after a short delay to catch any elements already in view
+            setTimeout(handleScroll, 400);
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
