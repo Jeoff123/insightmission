@@ -259,7 +259,7 @@ function toggleAchievement(event, idx) {
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <div class="footer-links">
-                    <a href="/">Home</a>
+                    <a href="index">Home</a>
                     <a href="about">About</a>
                     <a href="classes">Classes</a>
                     <a href="gallery">Gallery</a>
@@ -296,6 +296,51 @@ function toggleAchievement(event, idx) {
 
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+        });
+
+        // Scroll Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation class to all sections and cards
+            const animateElements = document.querySelectorAll('section, .mission-card, .vision-card, .value-card, .timeline-item, .founder-card');
+            
+            // Function to check if element is in viewport
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight * 0.9) &&
+                    rect.bottom >= (window.innerHeight * 0.1)
+                );
+            }
+            
+            // Function to handle scroll events
+            function handleScroll() {
+                animateElements.forEach((element, index) => {
+                    if (isInViewport(element)) {
+                        // Add staggered delay based on index
+                        setTimeout(() => {
+                            element.classList.add('animated');
+                        }, 80 * (index % 3));
+                    }
+                });
+            }
+            
+            // Initial setup
+            animateElements.forEach((element, index) => {
+                element.classList.add('animate-on-scroll');
+                
+                // Add staggered delay classes
+                const delayClass = `delay-${(index % 3) + 1}`;
+                element.classList.add(delayClass);
+            });
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', handleScroll);
+            
+            // Initial check on page load
+            handleScroll();
+            
+            // Check again after a short delay to catch any elements already in view
+            setTimeout(handleScroll, 200);
         });
 
         // Scroll Animation
