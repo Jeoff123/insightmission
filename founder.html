@@ -37,7 +37,7 @@
                     <p>Visionary Leader and Transformative Educator</p>
                 </div>
                 
-                <div class="compact-founder">
+                <div class="compact-founder no-animation">
                     <div class="founder-description-wrapper">
                         <div class="founder-image">
                             <img src="Gallery/42.jpeg" alt="Mr. Sunil D Kuruvilla">
@@ -267,8 +267,17 @@
     <script>
         // Scroll Animation
         document.addEventListener('DOMContentLoaded', function() {
-            // Add animation class to all sections and cards
-            const animateElements = document.querySelectorAll('section, .founder-card, .details-section, .achievement-card, .compact-founder, .founder-details-expanded, .founder-bio');
+            // Add animation class to all sections and cards except those with .no-animation class
+            const animateElements = document.querySelectorAll('section:not(.founder-section), .founder-card, .details-section, .achievement-card, .founder-details-expanded, .founder-bio');
+            
+            // Make founder section animate quickly on load
+            const founderSection = document.querySelector('.compact-founder');
+            if (founderSection) {
+                // Trigger reflow to ensure the transition works
+                void founderSection.offsetHeight;
+                // Add the animated class to trigger the quick animation
+                founderSection.classList.add('animated');
+            }
             
             // Function to check if element is in viewport
             function isInViewport(element) {
