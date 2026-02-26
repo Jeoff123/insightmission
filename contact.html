@@ -12,9 +12,9 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="/" class="logo">Insight Mission</a>
+        <a href="index" class="logo">Insight Mission</a>
         <div class="nav-links">
-            <a href="/">Home</a>
+            <a href="index">Home</a>
             <a href="about">About Us</a>
             <a href="founder">Our Founder</a>
             <a href="classes">Classes</a>
@@ -49,6 +49,7 @@
                             <label for="message">Message</label>
                             <textarea id="message" name="message" required></textarea>
                         </div>
+                        <button type="button" class="whatsapp-send-btn">Send Whatsapp</button>
                         <button type="submit" class="submit-btn">Send Message</button>
                     </form>
                 </div>
@@ -99,7 +100,7 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <div class="footer-links">
-                    <a href="/">Home</a>
+                    <a href="index">Home</a>
                     <a href="about">About</a>
                     <a href="classes">Classes</a>
                     <a href="gallery">Gallery</a>
@@ -125,7 +126,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Insight Mission. All rights reserved.</p>
+            <p>&copy; 2026 Insight Mission. All rights reserved.</p>
         </div>
     </footer>
 
@@ -213,10 +214,45 @@
                 transform: translateY(0);
             }
         }
+
+        .whatsapp-send-btn {
+            background-color: #34C759;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .whatsapp-send-btn:hover {
+            background-color: #2ecc71;
+        }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
+        function sendwhatsapp() {
+            var phonenumber = "+919656144712";
+
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var mobile = document.getElementById("mobile").value;
+            var message = document.getElementById("message").value;
+
+            var url = "https://wa.me/" + phonenumber + "?text="
+                + "*Name :* " + name + "%0a%0a" // Added spacing
+                + "*Email :* " + email + "%0a%0a" // Added spacing
+                + "*Mobile :* " + mobile + "%0a%0a" // Added spacing
+                + "*Message :* " + message + "%0a%0a";
+
+            window.open(url, '_blank').focus();
+        }
+
+        // Add event listener to the button
+        document.querySelector('.whatsapp-send-btn').addEventListener('click', sendwhatsapp);
+
         // Initialize EmailJS with your public key
         (function() {
             emailjs.init("_zISxii1tkO00RSi5");
