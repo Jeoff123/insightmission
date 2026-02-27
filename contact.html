@@ -247,6 +247,30 @@
             margin-bottom: 15px;
             font-style: italic;
         }
+
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f3f4f6;
+            color: #1f2937;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .form-group select {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
