@@ -252,7 +252,8 @@
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
     width: 100%;
     padding: 1rem;
     border: 1px solid #e5e7eb;
@@ -264,7 +265,8 @@
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
@@ -278,11 +280,11 @@
 .whatsapp-send-btn {
     background: #34C759;
     color: white;
-    padding: 1rem 2rem;
+    padding: 1.2rem 2.2rem;
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
     transition: all 0.3s ease;
     width: 100%;
@@ -334,11 +336,11 @@
 .submit-btn {
     background: var(--gradient-primary);
     color: white;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem;
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     transition: all 0.3s ease;
     width: 100%;
@@ -661,7 +663,8 @@ footer::before {
     }
 
     .form-group input,
-    .form-group textarea {
+    .form-group textarea,
+    .form-group select {
         padding: 0.8rem;
         font-size: var(--mobile-font-size);
     }

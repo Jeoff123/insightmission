@@ -46,10 +46,19 @@
                             <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" title="Please enter a 10-digit mobile number" placeholder="Enter 10-digit mobile number">
                         </div>
                         <div class="form-group">
+                            <label for="location">Are you located in India or outside India?</label>
+                            <select id="location" name="location" required>
+                                <option value="">-- Select Location --</option>
+                                <option value="india">In India</option>
+                                <option value="outside">Outside India</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="message">Message</label>
                             <textarea id="message" name="message" required></textarea>
                         </div>
-                        <button type="button" class="whatsapp-send-btn">Send Whatsapp</button>
+                        <p class="preference-text">We prefer sending queries through WhatsApp for faster response</p>
+                        <button type="button" class="whatsapp-send-btn">Send through WhatsApp</button>
                         <button type="submit" class="submit-btn">Send Message</button>
                     </form>
                 </div>
@@ -219,15 +228,24 @@
             background-color: #34C759;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 5px;
             margin-top: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            font-size: 1rem;
         }
 
         .whatsapp-send-btn:hover {
             background-color: #2ecc71;
+        }
+
+        .preference-text {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 15px;
+            font-style: italic;
         }
     </style>
 
@@ -239,12 +257,15 @@
             var name = document.getElementById("name").value;
             var email = document.getElementById("email").value;
             var mobile = document.getElementById("mobile").value;
+            var location = document.getElementById("location").value;
+            var locationText = location === "india" ? "In India" : location === "outside" ? "Outside India" : location;
             var message = document.getElementById("message").value;
 
             var url = "https://wa.me/" + phonenumber + "?text="
                 + "*Name :* " + name + "%0a%0a" // Added spacing
                 + "*Email :* " + email + "%0a%0a" // Added spacing
                 + "*Mobile :* " + mobile + "%0a%0a" // Added spacing
+                + "*Location :* " + locationText + "%0a%0a" // Added location
                 + "*Message :* " + message + "%0a%0a";
 
             window.open(url, '_blank').focus();
@@ -293,6 +314,7 @@
                 const name = document.getElementById('name').value;
                 const email = document.getElementById('email').value;
                 const mobile = document.getElementById('mobile').value;
+                const location = document.getElementById('location').value;
                 const message = document.getElementById('message').value;
 
                 // Simple validation
@@ -325,6 +347,7 @@
                             Name: ${name}
                             Email: ${email}
                             Mobile: ${mobile || 'Not provided'}
+                            Location: ${location || 'Not provided'}
                             Message: ${message}
                         `
                     }
